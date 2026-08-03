@@ -1,0 +1,283 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="?android:attr/colorBackground"
+    android:orientation="vertical">
+
+    <include
+        android:id="@+id/hero"
+        layout="@layout/layout_hero" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:clipToPadding="false"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <!-- ═══ Configs ═══ -->
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tilConfigs"
+                style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/input_label">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etConfigs"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="monospace"
+                    android:gravity="top|start"
+                    android:hint="@string/input_hint"
+                    android:importantForAutofill="no"
+                    android:inputType="textMultiLine|textNoSuggestions"
+                    android:minHeight="180dp"
+                    android:textDirection="ltr"
+                    android:textSize="12sp" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <TextView
+                android:id="@+id/tvConfigCount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:textColor="@color/text_subtle"
+                android:textSize="12sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal">
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnPasteConfigs"
+                    style="@style/Widget.Narsaq.ActionButton"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="6dp"
+                    android:layout_weight="1"
+                    android:text="@string/btn_paste"
+                    app:icon="@drawable/ic_paste" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnFileConfigs"
+                    style="@style/Widget.Narsaq.ActionButton"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="6dp"
+                    android:layout_marginEnd="6dp"
+                    android:layout_weight="1"
+                    android:text="@string/btn_file"
+                    app:icon="@drawable/ic_file" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnClearConfigs"
+                    style="@style/Widget.Narsaq.ActionButton"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="6dp"
+                    android:layout_weight="1"
+                    android:text="@string/btn_clear"
+                    app:icon="@drawable/ic_delete" />
+            </LinearLayout>
+
+            <!-- ═══ IPs ═══ -->
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tilIps"
+                style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="18dp"
+                android:hint="Candidate IPs">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etIps"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="monospace"
+                    android:gravity="top|start"
+                    android:hint="One IP per line"
+                    android:importantForAutofill="no"
+                    android:inputType="textMultiLine|textNoSuggestions"
+                    android:minHeight="120dp"
+                    android:textDirection="ltr"
+                    android:textSize="12sp" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <TextView
+                android:id="@+id/tvIpCount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:textColor="@color/text_subtle"
+                android:textSize="12sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal">
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnPasteIps"
+                    style="@style/Widget.Narsaq.ActionButton"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="6dp"
+                    android:layout_weight="1"
+                    android:text="@string/btn_paste"
+                    app:icon="@drawable/ic_paste" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnFileIps"
+                    style="@style/Widget.Narsaq.ActionButton"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="6dp"
+                    android:layout_marginEnd="6dp"
+                    android:layout_weight="1"
+                    android:text="@string/btn_file"
+                    app:icon="@drawable/ic_file" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnClearIps"
+                    style="@style/Widget.Narsaq.ActionButton"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="6dp"
+                    android:layout_weight="1"
+                    android:text="@string/btn_clear"
+                    app:icon="@drawable/ic_delete" />
+            </LinearLayout>
+
+            <!-- ═══ Anti-Filter Section (NEW) ═══ -->
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="2dp"
+                app:strokeWidth="0dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="14dp">
+
+                    <com.google.android.material.materialswitch.MaterialSwitch
+                        android:id="@+id/switchAntiFilter"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:checked="false"
+                        android:text="🛡️ Apply Anti-Filter Settings"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:text="Fragment + Unsafe FP + Custom CipherSuites"
+                        android:textColor="@color/text_subtle"
+                        android:textSize="11sp" />
+
+                    <LinearLayout
+                        android:id="@+id/antiFilterDetails"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:orientation="vertical"
+                        android:visibility="gone">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Fragment JSON:"
+                            android:textSize="12sp"
+                            android:textStyle="bold" />
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/etFragment"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="monospace"
+                                android:gravity="top|start"
+                                android:importantForAutofill="no"
+                                android:inputType="textMultiLine|textNoSuggestions"
+                                android:minHeight="80dp"
+                                android:textDirection="ltr"
+                                android:textSize="10sp" />
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="12dp"
+                            android:text="CipherSuites:"
+                            android:textSize="12sp"
+                            android:textStyle="bold" />
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/etCipherSuites"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="monospace"
+                                android:gravity="top|start"
+                                android:importantForAutofill="no"
+                                android:inputType="textMultiLine|textNoSuggestions"
+                                android:minHeight="60dp"
+                                android:textDirection="ltr"
+                                android:textSize="10sp" />
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/btnResetDefaults"
+                            style="@style/Widget.Narsaq.ActionButton"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:text="Reset to Defaults"
+                            app:icon="@drawable/ic_refresh" />
+                    </LinearLayout>
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- ═══ Start Button ═══ -->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnStart"
+                style="@style/Widget.Material3.Button.Icon"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:paddingTop="14dp"
+                android:paddingBottom="14dp"
+                android:text="@string/btn_start"
+                android:textSize="16sp"
+                app:icon="@drawable/ic_play"
+                app:iconGravity="textStart" />
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

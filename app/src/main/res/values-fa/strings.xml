@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Narsaq</string>
+
+    <string name="hero_subtitle">کانفیگ‌ها را وارد کن، دسترسی TCP را بررسی و نقاط پاسخ‌گو را مرتب کن</string>
+    <string name="cd_language">تغییر زبان</string>
+    <string name="cd_theme">حالت شب/روز</string>
+    <string name="cd_back">بازگشت</string>
+    <string name="cd_status_ok">کانفیگ در دسترس است</string>
+    <string name="cd_status_fail">کانفیگ در دسترس نیست</string>
+
+    <string name="input_label">کانفیگ‌ها</string>
+    <string name="input_hint">هر خط یکی…\nvless://…  vmess://…  ss://…  trojan://…\nhost:port یا host:443,8443,80</string>
+    <string name="btn_paste">پیست</string>
+    <string name="btn_file">انتخاب فایل</string>
+    <string name="btn_example">نمونه</string>
+    <string name="btn_clear">پاک کردن</string>
+    <string name="btn_start">شروع تست</string>
+    <string name="lines_count">%1$d خط</string>
+    <string name="clipboard_empty">کلیپ‌بورد خالی است</string>
+    <string name="file_read_error">خواندن فایل ممکن نشد</string>
+    <string name="example_loaded">کانفیگ‌های نمونه بارگذاری شد</string>
+    <string name="offline_error">اتصال اینترنت برقرار نیست</string>
+    <string name="no_valid_configs">هیچ کانفیگ معتبری پیدا نشد</string>
+
+    <string name="results_title">نتایج</string>
+    <string name="btn_new_test">تست جدید</string>
+    <string name="progress_text">%1$d از %2$d تست شد</string>
+    <string name="status_testing">در حال تست…</string>
+    <string name="status_done">تمام شد</string>
+    <string name="status_cancelled">لغو شد</string>
+    <string name="all_failed">هیچ کانفیگی در دسترس نبود. آی‌پی‌های دیگر را امتحان کن یا اتصال اینترنت را بررسی کن.</string>
+    <string name="filter_all">همه</string>
+    <string name="filter_passed">سالم</string>
+    <string name="filter_failed">خراب</string>
+    <string name="btn_cancel">لغو تست</string>
+    <string name="btn_retest_failed">تست مجدد خراب‌ها</string>
+    <string name="btn_retest_all">تست مجدد همه</string>
+    <string name="btn_export">خروجی فایل</string>
+    <string name="btn_copy">کپی</string>
+    <string name="btn_share">اشتراک</string>
+    <string name="copied">گزارش در کلیپ‌بورد کپی شد</string>
+    <string name="export_ok">ذخیره شد: %1$s</string>
+    <string name="export_failed">ذخیره‌سازی ناموفق بود</string>
+    <string name="share_title">اشتراک گزارش</string>
+    <string name="storage_permission_denied">دسترسی به حافظه داده نشد</string>
+    <string name="retest_empty">موردی برای تست مجدد نیست</string>
+
+    <string name="type_vless">VLESS</string>
+    <string name="type_vmess">VMess</string>
+    <string name="type_ss">SS</string>
+    <string name="type_trojan">Trojan</string>
+    <string name="type_plain">ساده</string>
+    <string name="type_invalid">نامعتبر</string>
+    <string name="status_waiting">در صف…</string>
+    <string name="status_testing_item">در حال تست…</string>
+    <string name="unreachable">غیرقابل دسترس</string>
+    <string name="invalid_config">این خط قابل پردازش نیست</string>
+    <string name="latency_ms">%1$d میلی‌ثانیه</string>
+    <string name="tcp_reachable">TCP در دسترس است</string>
+    <string name="speed_na">—</string>
+    <string name="rank_format">#%1$d</string>
+    <string name="ports_label">پورت %1$s</string>
+
+    <string name="empty_results_title">هنوز چیزی برای نمایش نیست</string>
+    <string name="empty_results_body">برای دیدن نتایج رتبه‌بندی‌شده، تست را شروع کن</string>
+
+    <string name="detail_title">جزئیات</string>
+    <string name="detail_sni">SNI / هاست: %1$s</string>
+    <string name="detail_path">مسیر: %1$s</string>
+    <string name="detail_speed_na">نتیجه: نقطه TCP در دسترس است؛ اتصال پروکسی تأیید نشده است</string>
+    <string name="detail_ports_header">پورت‌ها</string>
+    <string name="port_ok">✓ %1$d — %2$d میلی‌ثانیه</string>
+    <string name="port_fail">✗ %1$d — غیرقابل دسترس</string>
+    <string name="ok">باشه</string>
+
+    <string name="report_title">Narsaq — تست دسترسی TCP — %1$s</string>
+    <string name="report_servers">تعداد سرورهای تست‌شده: %1$d</string>
+    <string name="report_header_failed">ناموفق‌ها:</string>
+    <string name="report_line_no_speed">%1$d. %2$s — %3$d ms — %4$s ✓</string>
+</resources>

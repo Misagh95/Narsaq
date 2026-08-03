@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="brand_indigo">#4F46E5</color>
+    <color name="brand_violet">#7C3AED</color>
+    <color name="brand_on_gradient">#FFFFFF</color>
+    <color name="brand_on_gradient_subtle">#D6DEFF</color>
+    <color name="hero_track">#33FFFFFF</color>
+
+    <color name="md_primary">@color/brand_indigo</color>
+    <color name="md_on_primary">#FFFFFF</color>
+    <color name="md_primary_container">#E0E7FF</color>
+    <color name="md_on_primary_container">#1E1B4B</color>
+    <color name="md_secondary">#7C3AED</color>
+    <color name="md_on_secondary">#FFFFFF</color>
+    <color name="md_secondary_container">#EDE9FE</color>
+    <color name="md_on_secondary_container">#3B0764</color>
+    <color name="md_surface">#FAFAFF</color>
+    <color name="md_background">#F2F2FA</color>
+
+    <color name="text_subtle">#6B7280</color>
+    <color name="text_success">#16A34A</color>
+    <color name="text_fail">#DC2626</color>
+    <color name="rank_gold">#D97706</color>
+
+    <color name="badge_vless">#0284C7</color>
+    <color name="badge_vmess">#7C3AED</color>
+    <color name="badge_ss">#D97706</color>
+    <color name="badge_trojan">#059669</color>
+    <color name="badge_plain">#64748B</color>
+    <color name="badge_invalid">#DC2626</color>
+
+    <color name="ic_launcher_background">#4F46E5</color>
+</resources>
