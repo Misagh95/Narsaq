@@ -22,9 +22,34 @@
 - 🌐 English & فارسی (RTL) — instant language switch
 
 ### 🛡️ Anti-Filter for v2rayNG
-The anti-filter preset inside Narsaq is tuned for the **patterniha v2rayNG** fork — one of the most reliable clients for filtered networks:
 
-👉 **https://github.com/patterniha/v2rayNG/releases**
+The anti-filter preset inside Narsaq is tuned for the **patterniha v2rayNG** fork — one of the most reliable clients for filtered networks.
+
+#### Setup Guide
+
+**۱. Install PattNG first:**
+https://github.com/patterniha/v2rayNG/releases
+(PattNG is fully compatible with v2rayNG and adds the extra features needed for anti-filter.)
+
+**۲. Open your config in the app and tap Edit (✏️).**
+
+**۳. In the Address field, enter a clean Cloudflare IP** (e.g. `188.114.97.6` or any healthy IP from the scan results).
+
+**۴. In the Final Mask field, paste the following:**
+```
+{"tcp": [{"type": "fragment", "settings": {"packets": "tlshello", "lengths": ["5","94", "1"], "delays": ["0"], "maxSplit": "0"}},{"type": "fragment", "settings": {"packets": "1-1", "lengths": ["109", "1"], "delays": ["1"], "maxSplit": "355"}}]}
+```
+
+**۵. Set Fingerprint to `unsafe`.**
+
+**۶. In the Cipher Suites field, paste:**
+```
+TLS_AES_256_GCM_SHA384:TLS_CHACHA20_POLY1305_SHA256:TLS_AES_128_GCM_SHA256:TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384:TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384:TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256:TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256:TLS_ECDHE_ECDSA_WITH_CHACHA20_POLY1305_SHA256:TLS_ECDHE_RSA_WITH_CHACHA20_POLY1305_SHA256:TLS_ECDHE_ECDSA_WITH_AES_256_CBC_SHA:TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA:TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA256:TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256
+```
+
+**۷. Save and done.**
+
+👉 **Channel:** https://t.me/patt_channel_x/91
 
 ### 📦 Download
 Grab the latest signed APK from the **[Releases](https://github.com/Misagh95/Narsaq/releases)** page — or download **[v1.0.2](https://github.com/Misagh95/Narsaq/releases/download/v1.0.2/Narsaq-v1.0.2.apk)** directly.
