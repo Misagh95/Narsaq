@@ -21,8 +21,8 @@ android {
         applicationId = "dev.narsaq.speedtester"
         minSdk = 24
         targetSdk = 36
-        versionCode = 1
-        versionName = "1.0"
+        versionCode = 2
+        versionName = "1.0.1"
     }
 
     signingConfigs {
@@ -31,6 +31,11 @@ android {
             storePassword = keystoreProperties.getProperty("STORE_PASS")
             keyAlias = keystoreProperties.getProperty("KEY_ALIAS")
             keyPassword = keystoreProperties.getProperty("KEY_PASS")
+            // v1+v2+v3: widest sideload compatibility (some third-party
+            // installers and older ROMs still verify v1)
+            enableV1Signing = true
+            enableV2Signing = true
+            enableV3Signing = true
         }
     }
 

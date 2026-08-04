@@ -7,14 +7,15 @@ import android.net.NetworkCapabilities
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
-import com.google.android.material.textfield.TextInputEditText
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.core.os.bundleOf
 import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import com.google.android.material.textfield.TextInputEditText
 import dev.narsaq.speedtester.MainActivity
 import dev.narsaq.speedtester.MainViewModel
 import dev.narsaq.speedtester.R
@@ -40,11 +41,13 @@ class InputFragment : Fragment(R.layout.fragment_input) {
                 val text = currentContext.contentResolver.openInputStream(uri)?.use { stream ->
                     stream.bufferedReader(Charsets.UTF_8).readText().take(2_000_000)
                 }.orEmpty()
+
                 if (text.isBlank()) {
                     Toast.makeText(currentContext, R.string.file_read_error, Toast.LENGTH_SHORT)
                         .show()
                     return@registerForActivityResult
                 }
+
                 when (fileTarget) {
                     FileTarget.CONFIGS -> _binding?.etConfigs?.setText(text)
                     FileTarget.IPS -> _binding?.etIps?.setText(text)
@@ -57,7 +60,6 @@ class InputFragment : Fragment(R.layout.fragment_input) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         _binding = FragmentInputBinding.bind(view)
 
-        // ─── Hero ───
         binding.hero.btnLanguage.setOnClickListener {
             (activity as? MainActivity)?.toggleLanguage()
         }
@@ -65,36 +67,40 @@ class InputFragment : Fragment(R.layout.fragment_input) {
             (activity as? MainActivity)?.toggleTheme()
         }
 
-        // ─── Configs ───
         binding.etConfigs.doAfterTextChanged {
             updateCounts()
             updateStartState()
         }
 
-        binding.btnPasteConfigs.setOnClickListener { pasteInto(binding.etConfigs) }
-        binding.btnFileConfigs.setOnClickListener {
-            fileTarget = FileTarget.CONFIGS
-            pickFile.launch(arrayOf("text/plain", "application/octet-stream", "*/*"))
-        }
-        binding.btnClearConfigs.setOnClickListener { binding.etConfigs.setText("") }
-
-        // ─── IPs ───
         binding.etIps.doAfterTextChanged {
             updateCounts()
             updateStartState()
         }
 
+        binding.btnPasteConfigs.setOnClickListener { pasteInto(binding.etConfigs) }
         binding.btnPasteIps.setOnClickListener { pasteInto(binding.etIps) }
+
+        binding.btnFileConfigs.setOnClickListener {
+            fileTarget = FileTarget.CONFIGS
+            pickFile.launch(arrayOf("text/plain", "application/octet-stream", "*/*"))
+        }
+
         binding.btnFileIps.setOnClickListener {
             fileTarget = FileTarget.IPS
             pickFile.launch(arrayOf("text/plain", "application/octet-stream", "*/*"))
         }
+
+        binding.btnClearConfigs.setOnClickListener { binding.etConfigs.setText("") }
         binding.btnClearIps.setOnClickListener { binding.etIps.setText("") }
 
-        // ─── Anti-Filter Section ───
         setupAntiFilter()
 
-        // ─── Start ───
+        // IPهای مرحله اسکن اگر آمده باشند، اینجا پر می‌شوند
+        val initialIps = arguments?.getString(ARG_INITIAL_IPS).orEmpty()
+        if (initialIps.isNotBlank() && binding.etIps.text.isNullOrBlank()) {
+            binding.etIps.setText(initialIps)
+        }
+
         binding.btnStart.setOnClickListener {
             val configText = binding.etConfigs.text?.toString().orEmpty()
             val ipText = binding.etIps.text?.toString().orEmpty()
@@ -110,8 +116,11 @@ class InputFragment : Fragment(R.layout.fragment_input) {
                 }
 
                 !isOnline() -> {
-                    Toast.makeText(requireContext(), R.string.offline_error, Toast.LENGTH_LONG)
-                        .show()
+                    Toast.makeText(
+                        requireContext(),
+                        R.string.offline_error,
+                        Toast.LENGTH_LONG
+                    ).show()
                 }
 
                 else -> {
@@ -124,6 +133,7 @@ class InputFragment : Fragment(R.layout.fragment_input) {
                     } else {
                         null
                     }
+
                     viewModel.startBuild(configText, ipText, antiFilter)
                 }
             }
@@ -132,7 +142,6 @@ class InputFragment : Fragment(R.layout.fragment_input) {
         updateCounts()
         updateStartState()
 
-        // ─── Events ───
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.events.collect { event ->
@@ -161,16 +170,13 @@ class InputFragment : Fragment(R.layout.fragment_input) {
     }
 
     private fun setupAntiFilter() {
-        // پیش‌فرض‌ها
         binding.etFragment.setText(DEFAULT_FRAGMENT_JSON)
         binding.etCipherSuites.setText(DEFAULT_CIPHER_SUITES)
 
-        // نمایش/مخفی کردن جزئیات
         binding.switchAntiFilter.setOnCheckedChangeListener { _, isChecked ->
             binding.antiFilterDetails.visibility = if (isChecked) View.VISIBLE else View.GONE
         }
 
-        // ریست به پیش‌فرض
         binding.btnResetDefaults.setOnClickListener {
             binding.etFragment.setText(DEFAULT_FRAGMENT_JSON)
             binding.etCipherSuites.setText(DEFAULT_CIPHER_SUITES)
@@ -195,6 +201,7 @@ class InputFragment : Fragment(R.layout.fragment_input) {
             ?.lineSequence()?.count { it.isNotBlank() } ?: 0
         val ipCount = binding.etIps.text
             ?.lineSequence()?.count { it.isNotBlank() } ?: 0
+
         binding.tvConfigCount.text = getString(R.string.lines_count, configCount)
         binding.tvIpCount.text = getString(R.string.lines_count, ipCount)
     }
@@ -211,6 +218,7 @@ class InputFragment : Fragment(R.layout.fragment_input) {
             ?.getItemAt(0)
             ?.coerceToText(requireContext())
             ?.toString()
+
         if (text.isNullOrBlank()) {
             Toast.makeText(requireContext(), R.string.clipboard_empty, Toast.LENGTH_SHORT).show()
         } else {
@@ -234,6 +242,14 @@ class InputFragment : Fragment(R.layout.fragment_input) {
     }
 
     companion object {
+        private const val ARG_INITIAL_IPS = "initial_ips"
+
+        fun newInstance(initialIps: String = ""): InputFragment {
+            return InputFragment().apply {
+                arguments = bundleOf(ARG_INITIAL_IPS to initialIps)
+            }
+        }
+
         private val DEFAULT_FRAGMENT_JSON = """{"tcp": [{"type": "fragment", "settings": {"packets": "tlshello", "lengths": ["5","94", "1"], "delays": ["0"], "maxSplit": "0"}},{"type": "fragment", "settings": {"packets": "1-1", "lengths": ["109", "1"], "delays": ["1"], "maxSplit": "355"}}]}""".trimIndent()
 
         private const val DEFAULT_CIPHER_SUITES =
