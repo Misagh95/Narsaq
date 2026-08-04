@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="app/src/main/res/mipmap-xxxhdpi/ic_launcher_foreground.png" width="96" height="96" alt="Narsaq" />
+  <img src="https://github.com/Misagh95/Narsaq/releases/download/v1.0.1/narsaq-icon-1024.png" width="96" height="96" alt="Narsaq" />
   <h1 align="center">Narsaq</h1>
   <p align="center"><b>Config Endpoint Tester</b> — paste your proxy configs, rank responsive endpoints by TCP latency.</p>
   <p align="center">
@@ -28,12 +28,6 @@ The anti-filter preset inside Narsaq is tuned for the **patterniha v2rayNG** for
 
 ### 📦 Download
 Grab the latest signed APK from the **[Releases](https://github.com/Misagh95/Narsaq/releases)** page — or download **[v1.0.1](https://github.com/Misagh95/Narsaq/releases/download/v1.0.1/Narsaq-v1.0.1.apk)** directly.
-
-### 🛠️ Build
-```bash
-./gradlew assembleRelease
-```
-APK output: `app/build/outputs/apk/release/app-release.apk`
 
 ### 📄 License
 MIT

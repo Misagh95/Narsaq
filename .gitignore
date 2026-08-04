@@ -1,20 +1,3 @@
-*.iml
-.gradle/
-build/
-.idea/
-captures/
-.externalNativeBuild/
-.cxx/
-
-# Signing (never commit these!)
-*.keystore
-*.jks
-keystore.properties
-local.properties
-
-# Local / tooling artifacts
-.freebuff/
-desktop-v2.db*
-build_log.txt
-release_build.log
-*.log
+/*
+!.gitignore
+!README.md
