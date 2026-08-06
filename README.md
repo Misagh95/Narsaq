@@ -22,7 +22,7 @@
 - 🛡️ **End-to-end validation** — real VLESS / Trojan + TLS / WebSocket handshakes through each candidate, with TTFB & throughput scores
 - 🏷️ **ASN / ISP lookup** — identifies the provider behind every IP
 - 📤 **Export** — reports as TXT, Base64 subscription, Sing-box JSON, or Clash YAML, plus one-tap copy & share
-- 🧭 **PattNG anti-filter guide** — ready-made FinalMask and CipherSuites for filtered networks
+- 🧭 **PattNG anti-filter** — one-tap button applies FinalMask + CipherSuites (`fm`, `cs`, `fp=unsafe`) to all passed configs for filtered networks
 - 🔀 **Parallel testing** — never blocks the UI
 - 🏆 **Ranked results** with Passed / Failed filters and quality insights
 - 🌐 **English & فارسی (RTL)** — instant language switch
