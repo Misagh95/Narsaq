@@ -7,7 +7,7 @@
 #endif
 
 #define MyAppName "Narsaq Desktop"
-#define MyAppExe "NarsaqDesktop-v1.0.0.exe"
+#define MyAppExe "NarsaqDesktop-v" + MyAppVer + ".exe"
 #define MyAppPublisher "Narsaq"
 #define MyAppURL "https://github.com/Misagh95/NarsaqDesktop"
 
@@ -47,8 +47,10 @@ ShowLanguageDialog=no
 InfoBeforeFile=installer_info.txt
 
 [Languages]
+; Farsi.isl یک ترجمه غیررسمی است و با Inno Setup همراه نیست —
+; در این ریپو کنار installer.iss نگه‌داری می‌شود.
 Name: "english"; MessagesFile: "compiler:Default.isl"
-Name: "farsi"; MessagesFile: "compiler:Languages\Farsi.isl"
+Name: "farsi"; MessagesFile: "Farsi.isl"
 
 [Tasks]
 Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{cm:AdditionalIcons}"; Flags: unchecked

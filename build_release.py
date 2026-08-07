@@ -161,11 +161,6 @@ def ensure_icon():
     if os.path.isfile(ico):
         return ico
     try:
-        import make_icon  # tools/make_icon.py
-    except Exception:
-        pass
-    try:
-        import sys as _sys
         _sys.path.insert(0, os.path.join(ROOT, "tools"))
         import make_icon
         make_icon.main()
@@ -193,9 +188,7 @@ def make_installer(ver):
         print("[build] installer.iss پیدا نشد — نصب‌کننده ساخته نشد")
         return None
     print(f"[build] Inno Setup — ساخت {setup_filename(ver)} ...")
-    env = dict(os.environ)
-    env["MyAppVer"] = ver
-    subprocess.check_call([iscc, iss], cwd=ROOT, env=env)
+    subprocess.check_call([iscc, f"/DMyAppVer={ver}", iss], cwd=ROOT)
     out = os.path.join(RELEASES_DIR, setup_filename(ver))
     if not os.path.isfile(out):
         raise RuntimeError(f"نصب‌کننده ساخته نشد: {out}")
