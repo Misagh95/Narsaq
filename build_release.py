@@ -13,6 +13,7 @@ build_release.py — ساخت ریلیز دسکتاپ Narsaq
 خروجی‌ها در پوشه releases/:
     NarsaqDesktop-<ver>.exe
     Narsaq-Desktop-<ver>-portable.zip
+    NarsaqDesktop-Setup-<ver>.exe   (نصب‌کننده ویندوز — اگر Inno Setup موجود باشد)
     SHA256SUMS.txt
 """
 
@@ -71,6 +72,7 @@ def ensure_xray():
 
 def run_pyinstaller(ver):
     print(f"[build] PyInstaller — ساخت {exe_filename(ver)} ...")
+    ensure_icon()
     args = [
         sys.executable, "-m", "PyInstaller",
         "--noconfirm", "--clean",
@@ -78,6 +80,9 @@ def run_pyinstaller(ver):
         "--name", exe_filename(ver).replace(".exe", ""),
         os.path.join(ROOT, "narsaq_gui.py"),
     ]
+    ico = os.path.join(ROOT, "assets", "narsaq.ico")
+    if os.path.isfile(ico):
+        args += ["--icon", ico]
     subprocess.check_call(args, cwd=ROOT)
     exe = os.path.join(DIST_DIR, exe_filename(ver))
     if not os.path.isfile(exe):
@@ -130,6 +135,74 @@ def make_portable_zip(ver, exe_path):
     return zip_path
 
 
+def setup_filename(ver):
+    return f"NarsaqDesktop-Setup-{ver}.exe"
+
+
+def find_iscc():
+    """پیدا کردن ISCC.exe — در tools/isrc/app (دانلود شده) یا مسیرهای رایج."""
+    cands = [
+        os.path.join(ROOT, "tools", "isrc", "app", "ISCC.exe"),
+        os.path.join(ROOT, "tools", "innosetup", "ISCC.exe"),
+        os.environ.get("ISCC", ""),
+        r"C:\Program Files (x86)\Inno Setup 6\ISCC.exe",
+        r"C:\Program Files\Inno Setup 6\ISCC.exe",
+    ]
+    for c in cands:
+        if c and os.path.isfile(c):
+            return c
+    import shutil
+    return shutil.which("ISCC") or None
+
+
+def ensure_icon():
+    """ساخت آیکن با Pillow اگر نبود (و Pillow موجود بود)."""
+    ico = os.path.join(ROOT, "assets", "narsaq.ico")
+    if os.path.isfile(ico):
+        return ico
+    try:
+        import make_icon  # tools/make_icon.py
+    except Exception:
+        pass
+    try:
+        import sys as _sys
+        _sys.path.insert(0, os.path.join(ROOT, "tools"))
+        import make_icon
+        make_icon.main()
+    except Exception as e:
+        print(f"[build] آیکن ساخته نشد ({e}) — نصب‌کننده بدون آیکن ساخته می‌شود")
+    return ico if os.path.isfile(ico) else None
+
+
+def make_installer(ver):
+    """ساخت نصب‌کننده ویندوز با Inno Setup (اگر ISCC موجود باشد)."""
+    iscc = find_iscc()
+    if not iscc:
+        print("[build] ISCC.exe پیدا نشد — نصب‌کننده ساخته نشد.")
+        print("        برای ساخت نصب‌کننده: pip install pillow و اجرای ISCC از Inno Setup 6")
+        return None
+    ensure_icon()
+    if not os.path.isfile(os.path.join(ROOT, "dist", exe_filename(ver))):
+        print("[build] dist\\%s نیست — اول exe را بساز" % exe_filename(ver))
+        return None
+    # مطمئن شو xray.exe هست (نصب‌کننده آن را باندل می‌کند)
+    ensure_xray()
+
+    iss = os.path.join(ROOT, "installer.iss")
+    if not os.path.isfile(iss):
+        print("[build] installer.iss پیدا نشد — نصب‌کننده ساخته نشد")
+        return None
+    print(f"[build] Inno Setup — ساخت {setup_filename(ver)} ...")
+    env = dict(os.environ)
+    env["MyAppVer"] = ver
+    subprocess.check_call([iscc, iss], cwd=ROOT, env=env)
+    out = os.path.join(RELEASES_DIR, setup_filename(ver))
+    if not os.path.isfile(out):
+        raise RuntimeError(f"نصب‌کننده ساخته نشد: {out}")
+    print(f"[build] نصب‌کننده ساخته شد: {out} ({os.path.getsize(out) / 1e6:.1f} MB)")
+    return out
+
+
 def write_checksums(*files):
     lines = []
     for f in files:
@@ -175,7 +248,12 @@ def main():
         return 1
 
     zip_path = make_portable_zip(ver, exe_path)
-    write_checksums(final_exe, zip_path)
+    setup_path = make_installer(ver)
+
+    checksum_files = [final_exe, zip_path]
+    if setup_path:
+        checksum_files.append(setup_path)
+    write_checksums(*checksum_files)
 
     print("=" * 56)
     print("  ریلیز آماده شد — پوشه releases/")

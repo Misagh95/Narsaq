@@ -23,3 +23,9 @@ desktop-v2.db-wal
 releases/*.exe
 releases/*.zip
 releases/SHA256SUMS.txt
+
+# Inno Setup toolchain (downloaded on demand into tools/)
+tools/is.exe
+tools/isrc/
+tools/innoextract*
+tools/innoextract670/

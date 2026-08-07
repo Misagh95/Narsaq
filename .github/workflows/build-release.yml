@@ -29,10 +29,13 @@ jobs:
         with:
           python-version: "3.12"
 
-      - name: Install PyInstaller
-        run: pip install pyinstaller==6.20.0
+      - name: Install build tools (PyInstaller + Pillow for the icon)
+        run: pip install pyinstaller==6.20.0 pillow
 
-      - name: Build release (exe + portable zip + checksums)
+      - name: Install Inno Setup (for the Windows installer)
+        run: choco install innosetup -y --no-progress
+
+      - name: Build release (exe + portable zip + installer + checksums)
         run: python build_release.py
 
       - name: Show artifacts

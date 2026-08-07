@@ -70,7 +70,7 @@ python cf_config_builder.py ips.txt -c configs.txt --top 30 --timeout 5
 ### Locally (Windows)
 
 ```
-pip install pyinstaller
+pip install pyinstaller pillow
 python build_release.py
 ```
 
@@ -78,7 +78,11 @@ This produces, inside `releases/`:
 
 - `NarsaqDesktop-v<ver>.exe` — standalone exe (no Python needed to run)
 - `Narsaq-Desktop-v<ver>-portable.zip` — exe + `start_gui.bat` + README + `bin/xray.exe`
-- `SHA256SUMS.txt` — checksums for both files
+- `NarsaqDesktop-Setup-<ver>.exe` — **Windows installer** (Inno Setup): per-user install
+  into `%LocalAppData%\Programs\NarsaqDesktop`, Start-menu/Desktop shortcuts,
+  uninstaller, bundles xray. Requires Inno Setup 6 (`choco install innosetup -y`
+  or the bundled `tools/` copy).
+- `SHA256SUMS.txt` — checksums for all files
 
 > The exe auto-downloads `xray.exe` into its own `bin/` folder on first use
 > (or via the "⬇ Download Xray core" button), so even the bare exe works.
@@ -98,7 +102,7 @@ git tag v1.0.0 && git push origin v1.0.0
 ```
 
 On a `v*` tag the workflow also creates a **GitHub Release** with the exe,
-portable zip and checksums attached, ready for people to download.
+portable zip, **installer** and checksums attached, ready for people to download.
 
 > ℹ️ Artifacts are named after the version in `cf_config_builder.py`
 > (`VERSION`). Bump that constant before tagging so the tag and the files
