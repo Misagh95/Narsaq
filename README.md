@@ -8,15 +8,23 @@ self-contained.
 
 ## Quick start
 
+**The installed/portable app runs in its own native desktop window**
+(no browser tab needed — powered by pywebview + WebView2, which ships
+with Windows 10/11).
+
 1. Install Python 3.10+ (https://www.python.org/downloads/) — check
    "Add python.exe to PATH" during install.
 2. Double-click **start_gui.bat** (or run `python narsaq_gui.py`).
-3. Your browser opens at **http://127.0.0.1:8791** — that's the app.
+3. The app opens in a native desktop window. If `pywebview` isn't
+   installed, it falls back to opening your browser at
+   **http://127.0.0.1:8787** instead.
 
-To run on a different port:
+To run on a different port, or force a specific window mode:
 
 ```
-python narsaq_gui.py --port 9000
+python narsaq_gui.py --port 9000       # other port
+python narsaq_gui.py --browser         # force browser window
+python narsaq_gui.py --no-browser      # server only (no window)
 ```
 
 ## What's inside
@@ -70,9 +78,12 @@ python cf_config_builder.py ips.txt -c configs.txt --top 30 --timeout 5
 ### Locally (Windows)
 
 ```
-pip install pyinstaller pillow
+pip install pyinstaller pillow pywebview
 python build_release.py
 ```
+
+The exe bundles pywebview, so the installed app opens in a **native
+window**; without it the app falls back to the browser.
 
 This produces, inside `releases/`:
 

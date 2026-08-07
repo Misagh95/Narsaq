@@ -1778,6 +1778,32 @@ def pick_port(preferred):
     return 0
 
 
+def _has_webview():
+    """آیا pywebview (پنجره بومی دسکتاپ) در دسترس است؟"""
+    try:
+        import webview  # noqa: F401
+        return True
+    except Exception:
+        return False
+
+
+def _run_desktop_window(url):
+    """اجرای برنامه در پنجره بومی دسکتاپ (بدون مرورگر) با pywebview.
+    webview.start() بعد از بسته‌شدن پنجره برمی‌گردد — یعنی سرور باید
+    در thread پس‌زمینه باشد و بعد از بازگشت، shutdown شود."""
+    import webview
+
+    webview.create_window(
+        "Narsaq Desktop",
+        url,
+        width=1180,
+        height=800,
+        min_size=(860, 600),
+        background_color="#0b1017",
+    )
+    webview.start(private_mode=False)
+
+
 def main():
     try:
         sys.stdout.reconfigure(encoding="utf-8")
@@ -1786,21 +1812,52 @@ def main():
 
     ap = argparse.ArgumentParser(description="Narsaq Scanner — رابط گرافیکی وب")
     ap.add_argument("--port", type=int, default=8787, help="پورت سرور (پیش‌فرض: 8787)")
-    ap.add_argument("--no-browser", action="store_true", help="مرورگر را خودکار باز نکن")
+    ap.add_argument("--no-browser", action="store_true",
+                    help="مرورگر/پنجره را خودکار باز نکن (فقط سرور)")
+    ap.add_argument("--browser", action="store_true",
+                    help="اجبار به باز شدن در مرورگر (حتی اگر pywebview نصب باشد)")
     args = ap.parse_args()
 
     port = pick_port(args.port)
     server = ThreadingHTTPServer(("127.0.0.1", port), Handler)
     url = f"http://127.0.0.1:{port}"
 
+    mode = "browser"
+    if args.no_browser:
+        mode = "headless"
+    elif not args.browser and _has_webview():
+        mode = "desktop"
+
     print("=" * 56)
     print("  Narsaq Scanner v%s — رابط گرافیکی" % VERSION)
     print("=" * 56)
     print(f"  آدرس: {url}")
+    print(f"  حالت: {'پنجره دسکتاپ بومی' if mode == 'desktop' else ('سرور فقط' if mode == 'headless' else 'مرورگر')}")
     print("  برای توقف: Ctrl+C")
     print("=" * 56)
 
-    if not args.no_browser:
+    if mode == "desktop":
+        # پنجره بومی باید در thread اصلی باشد؛ سرور را به thread می‌بریم
+        server_thread = threading.Thread(target=server.serve_forever, daemon=True)
+        server_thread.start()
+        try:
+            _run_desktop_window(url)
+        except KeyboardInterrupt:
+            print("\nخداحافظ!")
+        except Exception as e:
+            # مثلاً WebView2 روی سیستم نصب نیست — برگرد به مرورگر
+            print(f"[!] پنجره دسکتاپ باز نشد ({e}) — افتادن به مرورگر")
+            threading.Timer(0.6, lambda: webbrowser.open(url)).start()
+            try:
+                server.serve_forever()
+            except KeyboardInterrupt:
+                print("\nخداحافظ!")
+        finally:
+            server.shutdown()
+            server.server_close()
+        return
+
+    if mode == "browser":
         threading.Timer(0.6, lambda: webbrowser.open(url)).start()
 
     try:

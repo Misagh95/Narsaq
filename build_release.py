@@ -83,6 +83,18 @@ def run_pyinstaller(ver):
     ico = os.path.join(ROOT, "assets", "narsaq.ico")
     if os.path.isfile(ico):
         args += ["--icon", ico]
+    # pywebview (پنجره بومی دسکتاپ) — اگر نصب بود باندل کن
+    try:
+        import webview  # noqa: F401
+        args += [
+            "--hidden-import", "webview",
+            "--hidden-import", "webview.platforms.edgechromium",
+            "--collect-all", "webview",
+            "--collect-all", "pythonnet",
+        ]
+        print("[build] pywebview detected — bundling native desktop window")
+    except ImportError:
+        print("[build] pywebview not installed — window falls back to browser")
     subprocess.check_call(args, cwd=ROOT)
     exe = os.path.join(DIST_DIR, exe_filename(ver))
     if not os.path.isfile(exe):

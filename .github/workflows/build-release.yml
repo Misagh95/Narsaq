@@ -29,8 +29,8 @@ jobs:
         with:
           python-version: "3.12"
 
-      - name: Install build tools (PyInstaller + Pillow for the icon)
-        run: pip install pyinstaller==6.20.0 pillow
+      - name: Install build tools (PyInstaller + Pillow + pywebview)
+        run: pip install pyinstaller==6.20.0 pillow pywebview==6.2.1
 
       - name: Install Inno Setup (for the Windows installer)
         run: choco install innosetup -y --no-progress
