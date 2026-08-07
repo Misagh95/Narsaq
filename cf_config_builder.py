@@ -114,6 +114,16 @@ SNI_HOSTNAMES = [
     "1.1.1.1.cdn.cloudflare.net",
 ]
 
+def set_custom_snis(snis):
+    """تنظیم SNI‌های سفارشی از سمت کاربر یا رابط گرافیکی برای تست TLS"""
+    global SNI_HOSTNAMES
+    if isinstance(snis, str):
+        parts = [s.strip() for s in snis.replace(";", ",").split(",") if s.strip()]
+        if parts:
+            SNI_HOSTNAMES = parts
+    elif isinstance(snis, (list, tuple)) and snis:
+        SNI_HOSTNAMES = list(snis)
+
 # اندازه نمونه‌ها (مثل نسخه موبایل)
 DOWNLOAD_SAMPLE_BYTES = 64 * 1024      # پروب دانلود
 SPEED_SAMPLE_BYTES = 512 * 1024        # تست سرعت
@@ -2737,7 +2747,14 @@ def main():
         "--no-verify", action="store_true",
         help="حذف مرحله تأیید (تست دوم با ۳ نمونه)"
     )
+    ap.add_argument(
+        "--snis", type=str, default="",
+        help="SNI‌های سفارشی با کاما (مثال: speed.cloudflare.com,custom.example.com)"
+    )
     args = ap.parse_args()
+
+    if hasattr(args, "snis") and args.snis:
+        set_custom_snis(args.snis)
 
     # ─── حالت اسکنر: تولید و اسکن آی‌پی‌ها ───
     if args.scan:
