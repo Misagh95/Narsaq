@@ -15,6 +15,8 @@ narsaq_gui.py — رابط گرافیکی وب برای اسکنر Narsaq
 """
 
 import argparse
+import base64
+import glob
 import json
 import os
 import queue
@@ -99,6 +101,9 @@ def _run_scan(params):
         neighbor_scan = bool(params.get("neighbor_scan", True))
         custom = params.get("custom_ranges", "") or ""
         config_file = params.get("config_file", "") or ""
+        snis = params.get("snis", "") or ""
+        if snis:
+            cfb.set_custom_snis(snis)
 
         if custom and os.path.exists(custom):
             with open(custom, "r", encoding="utf-8-sig") as fh:
@@ -726,9 +731,38 @@ DASHBOARD_HTML = r"""<!DOCTYPE html>
         <button class="ghost" id="btnBrowse" data-i="choose_file">📂 Choose file</button>
       </div>
     </div>
+    <div style="margin-top:14px">
+      <label style="font-size:12px;color:var(--muted);display:block;margin-bottom:6px" data-i="custom_snis">Custom SNIs (optional — comma separated for DPI bypass)</label>
+      <input id="customSnis" placeholder="e.g. speed.cloudflare.com, www.cloudflare.com" style="width:100%">
+    </div>
     <div class="actions">
       <button id="btnStart" data-i="start_scan">🚀 Start Scan</button>
+      <button id="btnRetest" class="ghost" data-i="retest_saved">⚡ Fast Retest Saved IPs</button>
       <button id="btnCancel" class="hidden" data-i="cancel">⛔ Cancel</button>
+    </div>
+  </div>
+
+  <div class="card" id="subCard" style="margin-bottom:20px;">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;">
+      <h2 style="margin:0;">🔗 Local Subscription (اشتراک محلی)</h2>
+      <span style="font-size:11px;background:var(--accent);color:#fff;padding:2px 8px;border-radius:12px;">Live /sub</span>
+    </div>
+    <div style="font-size:12px;color:var(--muted);margin-bottom:12px;">
+      لینک اشتراک محلی را یک‌بار در کلاینت خود (v2rayN، Nekobox، Sing-box، Clash) وارد کنید تا همیشه آخرین کانفیگ‌های تمیز را دریافت کنید:
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:10px;">
+      <div style="background:var(--bg2);padding:8px 12px;border-radius:6px;display:flex;justify-content:space-between;align-items:center;">
+        <span style="font-size:12px;font-family:monospace;">http://127.0.0.1:8787/sub</span>
+        <button class="ghost" style="padding:4px 8px;font-size:11px;" onclick="navigator.clipboard.writeText('http://127.0.0.1:8787/sub');alert('کپی شد!');">📋 Base64 Sub</button>
+      </div>
+      <div style="background:var(--bg2);padding:8px 12px;border-radius:6px;display:flex;justify-content:space-between;align-items:center;">
+        <span style="font-size:12px;font-family:monospace;">http://127.0.0.1:8787/sub?fmt=singbox</span>
+        <button class="ghost" style="padding:4px 8px;font-size:11px;" onclick="navigator.clipboard.writeText('http://127.0.0.1:8787/sub?fmt=singbox');alert('کپی شد!');">📋 Sing-box Sub</button>
+      </div>
+      <div style="background:var(--bg2);padding:8px 12px;border-radius:6px;display:flex;justify-content:space-between;align-items:center;">
+        <span style="font-size:12px;font-family:monospace;">http://127.0.0.1:8787/sub?fmt=clash</span>
+        <button class="ghost" style="padding:4px 8px;font-size:11px;" onclick="navigator.clipboard.writeText('http://127.0.0.1:8787/sub?fmt=clash');alert('کپی شد!');">📋 Clash Sub</button>
+      </div>
     </div>
   </div>
 
@@ -1325,6 +1359,7 @@ $('btnStart').onclick = async () => {
     speed_test: $('speed').checked,
     custom_ranges: $('customRanges').value,
     config_file: $('configFile').value.trim(),
+    snis: $('customSnis') ? $('customSnis').value.trim() : '',
   };
   $('btnStart').disabled = true;
   $('btnStart').textContent = t('scanning');
@@ -1347,6 +1382,33 @@ $('btnStart').onclick = async () => {
     $('btnStart').textContent = t('start_scan');
   }
 };
+
+if ($('btnRetest')) {
+  $('btnRetest').onclick = async () => {
+    const body = {
+      configs: $('optInput') ? $('optInput').value : '',
+      timeout: parseFloat($('timeout').value) || 3,
+      workers: parseInt($('workers').value) || 64,
+    };
+    $('btnRetest').disabled = true;
+    $('btnRetest').textContent = '⚡ در حال تست سریع...';
+    try {
+      const resp = await fetch('/api/retest-saved', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(body),
+      });
+      const j = await resp.json();
+      if (!j.ok) toast(j.message || 'در حال اجرا', true);
+      else toast('تست سریع با موفقیت شروع شد');
+    } catch (err) {
+      toast('خطا در تست سریع', true);
+    } finally {
+      $('btnRetest').disabled = false;
+      $('btnRetest').textContent = '⚡ Fast Retest Saved IPs';
+    }
+  };
+}
 
 $('btnCancel').onclick = async () => {
   try { await fetch('/api/cancel', { method: 'POST' }); } catch (e) {}
@@ -1622,6 +1684,137 @@ translateUI();
 LAST_CONFIGS = {"content": ""}
 
 
+def _get_subscription_output(fmt="base64"):
+    """تولید خروجی برای سرور اشتراک محلی (/sub) در فرمت‌های base64, plain, singbox, clash"""
+    lines = []
+    if LAST_OPT.get("output") and str(LAST_OPT["output"]).strip():
+        lines = [l.strip() for l in str(LAST_OPT["output"]).splitlines() if l.strip() and not l.strip().startswith("#")]
+    elif LAST_BUILD.get("outputs", {}).get("plain") and str(LAST_BUILD["outputs"]["plain"]).strip():
+        lines = [l.strip() for l in str(LAST_BUILD["outputs"]["plain"]).splitlines() if l.strip() and not l.strip().startswith("#")]
+    else:
+        best_files = sorted(glob.glob("best_configs_*.txt"), key=os.path.getmtime, reverse=True)
+        if best_files:
+            try:
+                with open(best_files[0], "r", encoding="utf-8-sig") as fh:
+                    lines = [l.strip() for l in fh if l.strip() and not l.strip().startswith("#")]
+            except Exception:
+                pass
+        if not lines and LAST_CONFIGS.get("content"):
+            lines = [l.strip() for l in str(LAST_CONFIGS["content"]).splitlines() if l.strip() and not l.strip().startswith("#")]
+
+    if not lines:
+        return "", "text/plain; charset=utf-8"
+
+    if fmt == "plain":
+        return "\n".join(lines), "text/plain; charset=utf-8"
+    elif fmt == "singbox":
+        results = []
+        for l in lines:
+            cfg = cfb.parse_config_line(l)
+            if cfg:
+                results.append({
+                    "type": cfg["type"],
+                    "final_config": l,
+                    "best_ip": cfg.get("original_host", ""),
+                    "best_port": cfg.get("port", 443),
+                    "sni": cfg.get("test_host", "")
+                })
+        return cfb.pack_singbox_json(results), "application/json; charset=utf-8"
+    elif fmt == "clash":
+        results = []
+        for l in lines:
+            cfg = cfb.parse_config_line(l)
+            if cfg:
+                results.append({
+                    "type": cfg["type"],
+                    "final_config": l,
+                    "best_ip": cfg.get("original_host", ""),
+                    "best_port": cfg.get("port", 443),
+                    "sni": cfg.get("test_host", "")
+                })
+        return cfb.pack_clash_yaml(results), "text/yaml; charset=utf-8"
+    else:
+        plain_text = "\n".join(lines)
+        b64 = base64.b64encode(plain_text.encode("utf-8")).decode("ascii")
+        return b64, "text/plain; charset=utf-8"
+
+
+def _run_retest_saved(params):
+    """تست سریع کانفیگ‌های ذخیره‌شده بدون نیاز به اسکن مجدد IP"""
+    try:
+        config_text = params.get("configs", "") or LAST_CONFIGS.get("content", "")
+        timeout = float(params.get("timeout", 3.0))
+        workers = int(params.get("workers", 64))
+        top = int(params.get("top", 10))
+
+        ip_files = sorted(glob.glob("clean_ips_*.txt"), key=os.path.getmtime, reverse=True)
+        if not ip_files:
+            with LOCK:
+                BUILD_STATE.update(running=False, phase="Error", error="هیچ فایل آی‌پی تمیزی (clean_ips_*.txt) یافت نشد. ابتدا یک بار اسکن کنید.")
+            broadcast("build-done", {"state": "error", "message": "هیچ فایل آی‌پی تمیزی یافت نشد"})
+            return
+
+        with open(ip_files[0], "r", encoding="utf-8-sig") as fh:
+            ip_text = fh.read()
+
+        with LOCK:
+            BUILD_STATE.update(running=True, phase="Start", done=0, total=0, error="")
+
+        results, stats = cfb.build_configs_from_text(
+            config_text,
+            ip_text,
+            timeout,
+            workers,
+            top=top,
+            on_phase=lambda p: _emit_build_phase(0, 0, p),
+            on_progress=lambda d, t, phase: _emit_build_phase(d, t, phase),
+        )
+
+        with LOCK:
+            BUILD_STATE.update(running=False, phase="Done")
+        broadcast("build-phase", {"phase": "Building outputs..."})
+
+        if not results:
+            err = stats.get("error", "هیچ کانفیگی ساخته نشد")
+            with LOCK:
+                BUILD_STATE.update(error=err)
+            broadcast("build-done", {"state": "error", "message": err})
+            return
+
+        outputs = cfb.pack_all(results)
+        with LOCK:
+            LAST_BUILD.update(
+                results=results,
+                stats=stats,
+                outputs=outputs,
+                finished_at=datetime.now().strftime("%H:%M:%S"),
+            )
+            BUILD_STATE.update(running=False, phase="Done", error="")
+        broadcast("build-done", {
+            "state": "done",
+            "count": len(results),
+            "outputs": outputs,
+            "stats": stats,
+            "clean_ips_file": ip_files[0],
+        })
+    except Exception as e:
+        import traceback
+        traceback.print_exc()
+        with LOCK:
+            BUILD_STATE.update(running=False, phase="Error", error=str(e))
+        broadcast("build-done", {"state": "error", "message": str(e)})
+
+
+def _start_retest_thread(params):
+    with LOCK:
+        if BUILD_STATE["running"]:
+            return False
+        BUILD_STATE["running"] = True
+    t = threading.Thread(target=_run_retest_saved, args=(params,), daemon=True)
+    t.start()
+    return True
+
+
 class Handler(BaseHTTPRequestHandler):
     protocol_version = "HTTP/1.1"
 
@@ -1666,6 +1859,30 @@ class Handler(BaseHTTPRequestHandler):
             self._send_json({"path": cfb.find_xray_binary() or ""})
         elif path == "/api/opt-outputs":
             self._send_json(LAST_OPT)
+        elif path == "/sub" or path.startswith("/sub/"):
+            qs = parse_qs(url.query)
+            fmt_list = qs.get("fmt", ["base64"])
+            fmt = fmt_list[0].lower() if fmt_list else "base64"
+            if path == "/sub/plain":
+                fmt = "plain"
+            elif path == "/sub/singbox":
+                fmt = "singbox"
+            elif path == "/sub/clash":
+                fmt = "clash"
+            elif path == "/sub/base64":
+                fmt = "base64"
+
+            data_str, ctype = _get_subscription_output(fmt)
+            data = data_str.encode("utf-8")
+            self.send_response(200)
+            self.send_header("Content-Type", ctype)
+            self.send_header("Content-Length", str(len(data)))
+            self.send_header("Cache-Control", "no-store")
+            self.send_header("Profile-Update-Interval", "6")
+            self.send_header("Subscription-Userinfo", "upload=0; download=0; total=107374182400; expire=253402300799")
+            self.send_header("Profile-Title", "Narsaq-Desktop")
+            self.end_headers()
+            self.wfile.write(data)
         else:
             self._send_json({"error": "not found"}, 404)
 
@@ -1680,6 +1897,14 @@ class Handler(BaseHTTPRequestHandler):
                 params = {}
             ok = _start_scan_thread(params)
             self._send_json({"ok": ok, "message": "" if ok else "اسکن دیگری در حال اجراست"})
+        elif path == "/api/retest-saved":
+            length = int(self.headers.get("Content-Length", 0))
+            try:
+                params = json.loads(self.rfile.read(length).decode("utf-8")) if length else {}
+            except Exception:
+                params = {}
+            ok = _start_retest_thread(params)
+            self._send_json({"ok": ok, "message": "" if ok else "تست یا ساختی در حال اجراست"})
         elif path == "/api/cancel":
             set_state(cancelled=True)
             self._send_json({"ok": True})
