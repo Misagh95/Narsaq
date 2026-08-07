@@ -1,0 +1,25 @@
+# Python / PyInstaller
+__pycache__/
+*.pyc
+build/
+dist/
+*.spec
+
+# Scan output files (generated at runtime)
+clean_ips_*.txt
+best_configs_*.txt
+
+# Xray core (auto-downloaded, ~36 MB)
+bin/xray.exe
+**/bin/xray.exe
+
+# Local Freebuff state
+.freebuff/
+desktop-v2.db
+desktop-v2.db-shm
+desktop-v2.db-wal
+
+# Release build outputs (produced by build_release.py)
+releases/*.exe
+releases/*.zip
+releases/SHA256SUMS.txt
