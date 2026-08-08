@@ -1,5 +1,7 @@
 # Narsaq Desktop
-
+<p align="center">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/f/fd/State_flag_of_Iran_%281964%E2%80%931980%29.svg" width="110" alt="Lion and Sun Flag of Iran">
+</p>
 Cloudflare clean-IP finder, config builder & config optimizer — a fully local,
 standalone Windows desktop tool. Self-contained with zero required external dependencies.
 
