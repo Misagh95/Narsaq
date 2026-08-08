@@ -1,4 +1,33 @@
-/*
-!.gitignore
-!README.md
-!README.fa.md
+# Gradle
+.gradle/
+/build/
+/app/build/
+
+# Local configuration files
+local.properties
+keystore.properties
+*.keystore
+*.jks
+
+# IDE
+.idea/
+*.iml
+.vscode/
+.kotlin/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs & artifacts
+*.log
+*.apk
+
+# Local tooling and non-Android projects
+.freebuff/
+NarsaqDesktop/
+cli/
+cf_config_builder.py
+/art/
+/RELEASE_NOTES.md
+/build_log.txt

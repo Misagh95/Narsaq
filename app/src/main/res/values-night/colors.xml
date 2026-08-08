@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="status_bar">#07121E</color>
+    <color name="brand_on_gradient_subtle">#91A6B3</color>
+    <color name="hero_pill_bg">#1E36BEAF</color>
+
+    <!-- M3 Dark (Polar/Aurora) -->
+    <color name="md_primary">#57E3CD</color>
+    <color name="md_on_primary">#00352F</color>
+    <color name="md_primary_container">#153B3A</color>
+    <color name="md_on_primary_container">#A7F5E6</color>
+    <color name="md_secondary">#A9C7FF</color>
+    <color name="md_on_secondary">#1B2B4E</color>
+    <color name="md_secondary_container">#1B2B4E</color>
+    <color name="md_on_secondary_container">#E3E9FF</color>
+    <color name="md_surface">#0E1D2A</color>
+    <color name="md_background">#07121E</color>
+    <color name="md_surface_variant">#132635</color>
+    <color name="md_on_surface_variant">#91A6B3</color>
+    <color name="md_on_surface">#EFF7F8</color>
+    <color name="md_outline">#7A8D99</color>
+    <color name="md_outline_variant">#203848</color>
+    <color name="md_primary_gradient_start">#4BD9C2</color>
+    <color name="md_primary_gradient_end">#79EDD9</color>
+
+    <color name="text_subtle">#91A6B3</color>
+    <color name="text_success">#62E5B9</color>
+    <color name="text_fail">#FF8585</color>
+    <color name="rank_gold">#FFD17C</color>
+
+    <color name="quality_excellent">#42D4A3</color>
+    <color name="quality_good">#57E3CD</color>
+    <color name="quality_fair">#FFC65A</color>
+    <color name="quality_slow">#FF8585</color>
+</resources>

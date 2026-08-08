@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Polar / Aurora palette (Aurora Signal) -->
+    <color name="polar_board">#07101B</color>
+    <color name="polar_board_2">#0A1725</color>
+    <color name="aurora_mint">#55E5CD</color>
+    <color name="aurora_ice">#89A8FF</color>
+    <color name="aurora_gold">#FFC962</color>
+    <color name="aurora_coral">#FF7A7A</color>
+
+    <!-- Hero gradient (always deep polar navy) -->
+    <color name="status_bar">#0A1B2D</color>
+    <color name="hero_start">#0A1B2D</color>
+    <color name="hero_mid">#0E2D3E</color>
+    <color name="hero_end">#16394A</color>
+    <color name="brand_on_gradient">#FFFFFF</color>
+    <color name="brand_on_gradient_subtle">#BCD0D9</color>
+    <color name="hero_track">#26FFFFFF</color>
+    <color name="hero_pill_bg">#1E38BEAF</color>
+    <color name="hero_pill_border">#3D63EBD3</color>
+    <color name="hero_pill_text">#CFFFF4</color>
+    <color name="hero_stat_bg">#40040F19</color>
+    <color name="hero_stat_border">#17FFFFFF</color>
+
+    <!-- M3 Light (Polar/Aurora) -->
+    <color name="md_primary">#087B72</color>
+    <color name="md_on_primary">#FFFFFF</color>
+    <color name="md_primary_container">#D9F5EF</color>
+    <color name="md_on_primary_container">#00332D</color>
+    <color name="md_secondary">#3D5A80</color>
+    <color name="md_on_secondary">#FFFFFF</color>
+    <color name="md_secondary_container">#E3E9FF</color>
+    <color name="md_on_secondary_container">#1B2B4E</color>
+    <color name="md_surface">#FFFFFF</color>
+    <color name="md_background">#F3F7F8</color>
+    <color name="md_surface_variant">#EAF1F2</color>
+    <color name="md_on_surface_variant">#6D7F8B</color>
+    <color name="md_on_surface">#10202C</color>
+    <color name="md_outline">#8A9AA4</color>
+    <color name="md_outline_variant">#D9E4E6</color>
+    <color name="md_primary_gradient_start">#087B72</color>
+    <color name="md_primary_gradient_end">#10A18F</color>
+
+    <color name="text_subtle">#6D7F8B</color>
+    <color name="text_success">#13966C</color>
+    <color name="text_fail">#C94747</color>
+    <color name="rank_gold">#B47000</color>
+
+    <color name="quality_excellent">#16996E</color>
+    <color name="quality_good">#0E8C7E</color>
+    <color name="quality_fair">#C47B1B</color>
+    <color name="quality_slow">#C94747</color>
+
+    <color name="badge_vless">#4C6DB8</color>
+    <color name="badge_vmess">#8B5CF6</color>
+    <color name="badge_ss">#B47000</color>
+    <color name="badge_trojan">#16996E</color>
+    <color name="badge_plain">#64748B</color>
+    <color name="badge_invalid">#C94747</color>
+
+    <color name="ic_launcher_background">#087B72</color>
+</resources>

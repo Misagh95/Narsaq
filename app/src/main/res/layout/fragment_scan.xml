@@ -1,0 +1,816 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="?android:attr/colorBackground"
+    android:orientation="vertical">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:clipToPadding="false"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <!-- Hero -->
+            <LinearLayout
+                android:id="@+id/heroRoot"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_hero"
+                android:orientation="vertical"
+                android:paddingStart="20dp"
+                android:paddingTop="22dp"
+                android:paddingEnd="20dp"
+                android:paddingBottom="22dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="34dp"
+                        android:layout_height="34dp"
+                        android:background="@drawable/bg_logo_mark"
+                        android:gravity="center"
+                        android:text="N"
+                        android:textColor="#07141E"
+                        android:textSize="19sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:layout_weight="1"
+                        android:text="@string/app_name"
+                        android:textColor="@color/brand_on_gradient"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+
+                    <ImageView
+                        android:id="@+id/btnLanguage"
+                        android:layout_width="38dp"
+                        android:layout_height="38dp"
+                        android:background="@drawable/bg_hero_icon"
+                        android:clickable="true"
+                        android:contentDescription="@string/cd_language"
+                        android:focusable="true"
+                        android:padding="9dp"
+                        android:src="@drawable/ic_language"
+                        app:tint="@color/brand_on_gradient" />
+
+                    <ImageView
+                        android:id="@+id/btnTheme"
+                        android:layout_width="38dp"
+                        android:layout_height="38dp"
+                        android:layout_marginStart="6dp"
+                        android:background="@drawable/bg_hero_icon"
+                        android:clickable="true"
+                        android:contentDescription="@string/cd_theme"
+                        android:focusable="true"
+                        android:padding="9dp"
+                        android:src="@drawable/ic_dark"
+                        app:tint="@color/brand_on_gradient" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/tvScanTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:text="@string/scan_hero_title"
+                    android:textColor="@color/brand_on_gradient"
+                    android:textSize="27sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tvScanSubtitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:text="@string/scan_hero_subtitle"
+                    android:textColor="@color/brand_on_gradient_subtle"
+                    android:textSize="13sp" />
+
+                <LinearLayout
+                    android:id="@+id/heroPill"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:background="@drawable/bg_pill"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingStart="11dp"
+                    android:paddingTop="7dp"
+                    android:paddingEnd="11dp"
+                    android:paddingBottom="7dp"
+                    android:visibility="gone">
+
+                    <View
+                        android:layout_width="7dp"
+                        android:layout_height="7dp"
+                        android:background="@drawable/bg_pill_dot" />
+
+                    <TextView
+                        android:id="@+id/tvHeroPillText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="7dp"
+                        android:text="@string/cd_status_scanning"
+                        android:textColor="@color/hero_pill_text"
+                        android:textSize="11sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/heroStats"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="14dp"
+                    android:orientation="horizontal"
+                    android:visibility="gone">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="4dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/bg_hero_stat"
+                        android:gravity="center"
+                        android:orientation="vertical"
+                        android:padding="10dp">
+
+                        <TextView
+                            android:id="@+id/tvStat1Value"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="0"
+                            android:textColor="@color/brand_on_gradient"
+                            android:textDirection="ltr"
+                            android:textSize="16sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="2dp"
+                            android:text="@string/stat_scanned"
+                            android:textColor="@color/brand_on_gradient_subtle"
+                            android:textSize="10sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="4dp"
+                        android:layout_marginEnd="4dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/bg_hero_stat"
+                        android:gravity="center"
+                        android:orientation="vertical"
+                        android:padding="10dp">
+
+                        <TextView
+                            android:id="@+id/tvStat2Value"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="0"
+                            android:textColor="@color/brand_on_gradient"
+                            android:textDirection="ltr"
+                            android:textSize="16sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="2dp"
+                            android:text="@string/stat_clean"
+                            android:textColor="@color/brand_on_gradient_subtle"
+                            android:textSize="10sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="4dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/bg_hero_stat"
+                        android:gravity="center"
+                        android:orientation="vertical"
+                        android:padding="10dp">
+
+                        <TextView
+                            android:id="@+id/tvStat3Value"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="—"
+                            android:textColor="@color/brand_on_gradient"
+                            android:textDirection="ltr"
+                            android:textSize="16sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="2dp"
+                            android:text="@string/stat_best"
+                            android:textColor="@color/brand_on_gradient_subtle"
+                            android:textSize="10sp" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/tvScanStatus"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="@string/scan_status_idle"
+                    android:textColor="@color/brand_on_gradient_subtle"
+                    android:textSize="11sp" />
+
+                <ProgressBar
+                    android:id="@+id/progressScan"
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:max="100"
+                    android:progress="0"
+                    android:progressBackgroundTint="@color/hero_track"
+                    android:progressTint="@color/aurora_mint"
+                    android:visibility="gone" />
+            </LinearLayout>
+
+            <!-- Page -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingStart="16dp"
+                android:paddingTop="18dp"
+                android:paddingEnd="16dp"
+                android:paddingBottom="28dp">
+
+                <!-- Quick setup -->
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:cardBackgroundColor="?attr/colorSurface"
+                    app:cardCornerRadius="22dp"
+                    app:cardElevation="0dp"
+                    app:strokeColor="?attr/colorOutlineVariant"
+                    app:strokeWidth="1dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="15dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="@string/scan_setup_title"
+                                android:textSize="14sp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:padding="7dp"
+                                android:text="@string/full_guide"
+                                android:textColor="@color/md_primary"
+                                android:textSize="10.5sp"
+                                android:textStyle="bold" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="12dp"
+                            android:orientation="horizontal">
+
+                            <LinearLayout
+                                android:id="@+id/cardGuideWorker"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginEnd="4dp"
+                                android:layout_weight="1"
+                                android:background="@drawable/bg_step"
+                                android:clickable="true"
+                                android:focusable="true"
+                                android:foreground="?attr/selectableItemBackground"
+                                android:gravity="center"
+                                android:orientation="vertical"
+                                android:padding="11dp">
+
+                                <TextView
+                                    android:layout_width="30dp"
+                                    android:layout_height="30dp"
+                                    android:background="@drawable/bg_step_icon"
+                                    android:gravity="center"
+                                    android:src="@drawable/ic_cloud"
+                                    app:drawableTint="?attr/colorPrimary"
+                                    app:tint="?attr/colorPrimary" />
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="8dp"
+                                    android:ellipsize="end"
+                                    android:gravity="center"
+                                    android:maxLines="1"
+                                    android:text="@string/scan_step_1_title"
+                                    android:textSize="9.5sp"
+                                    android:textStyle="bold" />
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:ellipsize="end"
+                                    android:gravity="center"
+                                    android:maxLines="1"
+                                    android:text="@string/scan_step_1_sub"
+                                    android:textColor="@color/text_subtle"
+                                    android:textSize="8.5sp" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:id="@+id/cardGuideBot"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="4dp"
+                                android:layout_marginEnd="4dp"
+                                android:layout_weight="1"
+                                android:background="@drawable/bg_step"
+                                android:clickable="true"
+                                android:focusable="true"
+                                android:foreground="?attr/selectableItemBackground"
+                                android:gravity="center"
+                                android:orientation="vertical"
+                                android:padding="11dp">
+
+                                <TextView
+                                    android:layout_width="30dp"
+                                    android:layout_height="30dp"
+                                    android:background="@drawable/bg_step_icon"
+                                    android:gravity="center"
+                                    android:src="@drawable/ic_bot"
+                                    app:drawableTint="?attr/colorPrimary"
+                                    app:tint="?attr/colorPrimary" />
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="8dp"
+                                    android:ellipsize="end"
+                                    android:gravity="center"
+                                    android:maxLines="1"
+                                    android:text="@string/scan_step_2_title"
+                                    android:textSize="9.5sp"
+                                    android:textStyle="bold" />
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:ellipsize="end"
+                                    android:gravity="center"
+                                    android:maxLines="1"
+                                    android:text="@string/scan_step_2_sub"
+                                    android:textColor="@color/text_subtle"
+                                    android:textSize="8.5sp" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:id="@+id/cardGuidePanels"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="4dp"
+                                android:layout_weight="1"
+                                android:background="@drawable/bg_step"
+                                android:clickable="true"
+                                android:focusable="true"
+                                android:foreground="?attr/selectableItemBackground"
+                                android:gravity="center"
+                                android:orientation="vertical"
+                                android:padding="11dp">
+
+                                <TextView
+                                    android:layout_width="30dp"
+                                    android:layout_height="30dp"
+                                    android:background="@drawable/bg_step_icon"
+                                    android:gravity="center"
+                                    android:src="@drawable/ic_layers"
+                                    app:drawableTint="?attr/colorPrimary"
+                                    app:tint="?attr/colorPrimary" />
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="8dp"
+                                    android:ellipsize="end"
+                                    android:gravity="center"
+                                    android:maxLines="1"
+                                    android:text="@string/scan_step_3_title"
+                                    android:textSize="9.5sp"
+                                    android:textStyle="bold" />
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:ellipsize="end"
+                                    android:gravity="center"
+                                    android:maxLines="1"
+                                    android:text="@string/scan_step_3_sub"
+                                    android:textColor="@color/text_subtle"
+                                    android:textSize="8.5sp" />
+                            </LinearLayout>
+                        </LinearLayout>
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <!-- Scan settings -->
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="14dp"
+                    app:cardBackgroundColor="?attr/colorSurface"
+                    app:cardCornerRadius="22dp"
+                    app:cardElevation="0dp"
+                    app:strokeColor="?attr/colorOutlineVariant"
+                    app:strokeWidth="1dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="15dp">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/scan_settings_title"
+                            android:textSize="14sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="3dp"
+                            android:text="@string/scan_settings_subtitle"
+                            android:textColor="@color/text_subtle"
+                            android:textSize="9.5sp" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="13dp"
+                            android:orientation="horizontal">
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginEnd="4dp"
+                                android:layout_weight="1"
+                                android:background="@drawable/bg_field"
+                                android:orientation="vertical"
+                                android:padding="10dp">
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/scan_field_ports"
+                                    android:textColor="@color/text_subtle"
+                                    android:textSize="8.5sp"
+                                    android:textStyle="bold" />
+
+                                <com.google.android.material.textfield.TextInputLayout
+                                    style="@style/Widget.Narsaq.TextInputLayout"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="4dp">
+
+                                    <com.google.android.material.textfield.TextInputEditText
+                                        android:id="@+id/etPort"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:inputType="text"
+                                        android:text="443"
+                                        android:textDirection="ltr"
+                                        android:textSize="13sp"
+                                        android:textStyle="bold" />
+                                </com.google.android.material.textfield.TextInputLayout>
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="4dp"
+                                android:layout_marginEnd="4dp"
+                                android:layout_weight="1"
+                                android:background="@drawable/bg_field"
+                                android:orientation="vertical"
+                                android:padding="10dp">
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/scan_field_count"
+                                    android:textColor="@color/text_subtle"
+                                    android:textSize="8.5sp"
+                                    android:textStyle="bold" />
+
+                                <com.google.android.material.textfield.TextInputLayout
+                                    style="@style/Widget.Narsaq.TextInputLayout"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="4dp">
+
+                                    <com.google.android.material.textfield.TextInputEditText
+                                        android:id="@+id/etCount"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:inputType="number"
+                                        android:text="1000"
+                                        android:textDirection="ltr"
+                                        android:textSize="13sp"
+                                        android:textStyle="bold" />
+                                </com.google.android.material.textfield.TextInputLayout>
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="4dp"
+                                android:layout_weight="1"
+                                android:background="@drawable/bg_field"
+                                android:orientation="vertical"
+                                android:padding="10dp">
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/scan_field_timeout"
+                                    android:textColor="@color/text_subtle"
+                                    android:textSize="8.5sp"
+                                    android:textStyle="bold" />
+
+                                <com.google.android.material.textfield.TextInputLayout
+                                    style="@style/Widget.Narsaq.TextInputLayout"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="4dp">
+
+                                    <com.google.android.material.textfield.TextInputEditText
+                                        android:id="@+id/etTimeout"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:inputType="number"
+                                        android:text="3"
+                                        android:textDirection="ltr"
+                                        android:textSize="13sp"
+                                        android:textStyle="bold" />
+                                </com.google.android.material.textfield.TextInputLayout>
+                            </LinearLayout>
+                        </LinearLayout>
+
+                        <com.google.android.material.materialswitch.MaterialSwitch
+                            android:id="@+id/switchTls"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="12dp"
+                            android:checked="true"
+                            android:text="@string/scan_tls_label" />
+
+                        <com.google.android.material.materialswitch.MaterialSwitch
+                            android:id="@+id/switchVerify"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:checked="true"
+                            android:text="@string/scan_verify_label" />
+
+                        <com.google.android.material.materialswitch.MaterialSwitch
+                            android:id="@+id/switchNeighborScan"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:checked="false"
+                            android:text="@string/scan_neighbor_label" />
+
+                        <com.google.android.material.materialswitch.MaterialSwitch
+                            android:id="@+id/switchIpv6"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:checked="false"
+                            android:text="@string/scan_ipv6_label" />
+
+                        <com.google.android.material.materialswitch.MaterialSwitch
+                            android:id="@+id/switchSpeedTest"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:checked="true"
+                            android:text="@string/scan_speed_label" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:background="@drawable/bg_field"
+                            android:orientation="vertical"
+                            android:padding="10dp">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/scan_field_ranges"
+                                android:textColor="@color/text_subtle"
+                                android:textSize="8.5sp"
+                                android:textStyle="bold" />
+
+                            <com.google.android.material.textfield.TextInputLayout
+                                style="@style/Widget.Narsaq.TextInputLayout"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="4dp">
+
+                                <com.google.android.material.textfield.TextInputEditText
+                                    android:id="@+id/etCustomRanges"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:hint="@string/scan_custom_ranges_hint"
+                                    android:inputType="textMultiLine"
+                                    android:minLines="2"
+                                    android:textDirection="ltr"
+                                    android:textSize="11.5sp" />
+                            </com.google.android.material.textfield.TextInputLayout>
+                        </LinearLayout>
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnStartScan"
+                    style="@style/Widget.Narsaq.PrimaryButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="@string/scan_again"
+                    app:icon="@drawable/ic_radar"
+                    app:iconGravity="textStart" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnCancelScan"
+                    style="@style/Widget.Narsaq.ActionButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="@string/scan_btn_cancel"
+                    android:visibility="gone"
+                    app:icon="@drawable/ic_stop" />
+
+                <!-- Ready card -->
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/cardReady"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:visibility="gone"
+                    app:cardBackgroundColor="@color/md_primary_container"
+                    app:cardCornerRadius="18dp"
+                    app:cardElevation="0dp"
+                    app:strokeWidth="0dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:padding="12dp">
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/tvReadyTitle"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:textColor="@color/md_on_primary_container"
+                                android:textSize="10.5sp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                                        android:id="@+id/tvReadySubtitle"
+                                                        android:layout_width="match_parent"
+                                                        android:layout_height="wrap_content"
+                                                        android:layout_marginTop="2dp"
+                                                        android:text="@string/scan_ready_subtitle"
+                                                        android:textColor="@color/text_subtle"
+                                                        android:textSize="8.5sp" />
+
+                                                    <TextView
+                                                        android:id="@+id/selectCountText"
+                                                        android:layout_width="wrap_content"
+                                                        android:layout_height="wrap_content"
+                                                        android:layout_marginTop="6dp"
+                                                        android:background="?attr/selectableItemBackground"
+                                                        android:clickable="true"
+                                                        android:focusable="true"
+                                                        android:gravity="center_vertical"
+                                                        android:padding="3dp"
+                                                        android:text="@string/scan_ip_count_all"
+                                                        android:textColor="@color/md_primary"
+                                                        android:textSize="9sp"
+                                                        android:textStyle="bold" />
+                                                    </LinearLayout>
+
+                                                    <com.google.android.material.button.MaterialButton
+                                                        android:id="@+id/btnGoToBuild"
+                                                        style="@style/Widget.Material3.Button.TextButton"
+                                                        android:layout_width="wrap_content"
+                                                        android:layout_height="wrap_content"
+                                                        android:text="@string/scan_view_results"
+                                                        android:textColor="@color/md_primary"
+                                                        android:textSize="9sp"
+                                                        android:textStyle="bold" />
+                                                </LinearLayout>
+                                            </com.google.android.material.card.MaterialCardView>
+
+                <!-- Results -->
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/cardResults"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="14dp"
+                    android:visibility="gone"
+                    app:cardBackgroundColor="?attr/colorSurface"
+                    app:cardCornerRadius="22dp"
+                    app:cardElevation="0dp"
+                    app:strokeColor="?attr/colorOutlineVariant"
+                    app:strokeWidth="1dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="15dp">
+
+                        <TextView
+                            android:id="@+id/tvResultsTitle"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/md_on_surface"
+                            android:textSize="13sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/tvResultsList"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:fontFamily="monospace"
+                            android:textDirection="ltr"
+                            android:textColor="@color/text_subtle"
+                            android:textSize="11sp" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="12dp">
+
+                            <com.google.android.material.button.MaterialButton
+                                android:id="@+id/btnCopyIps"
+                                style="@style/Widget.Narsaq.ActionButton"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginEnd="6dp"
+                                android:layout_weight="1"
+                                android:text="@string/scan_btn_copy"
+                                app:icon="@drawable/ic_copy" />
+                        </LinearLayout>
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

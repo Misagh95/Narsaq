@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Narsaq</string>
+
+    <string name="hero_subtitle">کانفیگ‌ها را وارد کن، دسترسی TCP را بررسی و نقاط پاسخ‌گو را مرتب کن</string>
+    <string name="cd_language">تغییر زبان</string>
+    <string name="cd_theme">حالت شب/روز</string>
+    <string name="cd_back">بازگشت</string>
+    <string name="cd_status_ok">کانفیگ در دسترس است</string>
+    <string name="cd_status_fail">کانفیگ در دسترس نیست</string>
+
+    <string name="input_label">کانفیگ‌ها</string>
+    <string name="input_label_sub">در هر خط یک اندپوینت</string>
+    <string name="input_ips_label">آی‌پی‌های کاندید</string>
+    <string name="input_ips_sub">جایگزین‌های اختیاری اندپوینت</string>
+    <string name="input_ips_hint">هر خط یک آی‌پی</string>
+    <string name="input_hint">هر خط یکی…\nvless://…  vmess://…  ss://…  trojan://…\nhost:port یا host:443,8443,80</string>
+    <string name="btn_paste">پیست</string>
+    <string name="btn_file">انتخاب فایل</string>
+    <string name="btn_example">نمونه</string>
+    <string name="btn_clear">پاک کردن</string>
+    <string name="btn_start">شروع تست</string>
+    <string name="lines_count">%1$d خط</string>
+    <string name="clipboard_empty">کلیپ‌بورد خالی است</string>
+    <string name="file_read_error">خواندن فایل ممکن نشد</string>
+    <string name="example_loaded">کانفیگ‌های نمونه بارگذاری شد</string>
+    <string name="offline_error">اتصال اینترنت برقرار نیست</string>
+    <string name="no_valid_configs">هیچ کانفیگ معتبری پیدا نشد</string>
+
+    <string name="results_title">نتایج</string>
+    <string name="btn_new_test">تست جدید</string>
+    <string name="progress_text">%1$d از %2$d تست شد</string>
+    <string name="status_testing">در حال تست…</string>
+    <string name="status_done">تمام شد</string>
+    <string name="status_cancelled">لغو شد</string>
+    <string name="all_failed">هیچ کانفیگی در دسترس نبود. آی‌پی‌های دیگر را امتحان کن یا اتصال اینترنت را بررسی کن.</string>
+    <string name="filter_all">همه</string>
+    <string name="filter_passed">سالم</string>
+    <string name="filter_failed">خراب</string>
+    <string name="btn_cancel">لغو تست</string>
+    <string name="btn_retest_failed">تست مجدد خراب‌ها</string>
+    <string name="btn_retest_all">تست مجدد همه</string>
+    <string name="btn_anti_filter">ضد فیلتر</string>
+    <string name="btn_anti_filter_active">✓ ضد فیلتر</string>
+    <string name="anti_filter_applied">ضد فیلتر (فرگمنت + cipherSuites) روی همه کانفیگ‌های سالم اعمال شد.</string>
+    <string name="anti_filter_removed">ضد فیلتر برداشته شد.</string>
+    <string name="anti_filter_remove_dialog_body">فرگمنت و cipherSuites از همه کانفیگ‌ها حذف شود؟ کانفیگ‌ها به حالت ساده و سازگار با همه کلاینت‌ها برمی‌گردند.</string>
+    <string name="anti_filter_dialog_title">اعمال ضد فیلتر؟</string>
+    <string name="anti_filter_dialog_body">این کار فرگمنت و cipherSuites را به کانفیگ‌های VLESS/Trojan/VMess اضافه می‌کند. این تنظیمات فقط در کلاینت PattNG کار می‌کنند — بقیه کلاینت‌ها آن را نادیده می‌گیرند یا رد می‌کنند.\n\nنتایج عادی Narsaq تا قبل از اعمال این گزینه در همه کلاینت‌ها کار می‌کند.</string>
+    <string name="anti_filter_install_pattng">دانلود PattNG</string>
+    <string name="anti_filter_apply">اعمال روی همه کانفیگ‌ها</string>
+    <string name="btn_export">خروجی فایل</string>
+    <string name="btn_copy">کپی</string>
+    <string name="btn_share">اشتراک</string>
+    <string name="copied">گزارش در کلیپ‌بورد کپی شد</string>
+    <string name="nothing_to_copy">چیزی برای کپی نیست</string>
+    <string name="export_ok">ذخیره شد: %1$s</string>
+    <string name="export_failed">ذخیره‌سازی ناموفق بود</string>
+    <string name="share_title">اشتراک گزارش</string>
+    <string name="storage_permission_denied">دسترسی به حافظه داده نشد</string>
+    <string name="retest_empty">موردی برای تست مجدد نیست</string>
+
+    <string name="type_vless">VLESS</string>
+    <string name="type_vmess">VMess</string>
+    <string name="type_ss">SS</string>
+    <string name="type_trojan">Trojan</string>
+    <string name="type_plain">ساده</string>
+    <string name="type_invalid">نامعتبر</string>
+    <string name="status_waiting">در صف…</string>
+    <string name="status_testing_item">در حال تست…</string>
+    <string name="unreachable">غیرقابل دسترس</string>
+    <string name="invalid_config">این خط قابل پردازش نیست</string>
+    <string name="latency_ms">%1$d میلی‌ثانیه</string>
+    <string name="tcp_reachable">TCP در دسترس است</string>
+    <string name="speed_na">—</string>
+    <string name="rank_format">#%1$d</string>
+    <string name="ports_label">پورت %1$s</string>
+    <string name="quality_excellent">عالی</string>
+    <string name="quality_good">خوب</string>
+    <string name="quality_fair">متوسط</string>
+    <string name="quality_slow">کند</string>
+
+    <string name="empty_results_title">هنوز چیزی برای نمایش نیست</string>
+    <string name="empty_results_body">برای دیدن نتایج رتبه‌بندی‌شده، تست را شروع کن</string>
+
+    <string name="detail_title">جزئیات</string>
+    <string name="detail_sni">SNI / هاست: %1$s</string>
+    <string name="detail_path">مسیر: %1$s</string>
+    <string name="detail_speed_na">نتیجه: نقطه TCP در دسترس است؛ اتصال پروکسی تأیید نشده است</string>
+    <string name="detail_ports_header">پورت‌ها</string>
+    <string name="port_ok">✓ %1$d — %2$d میلی‌ثانیه</string>
+    <string name="port_fail">✗ %1$d — غیرقابل دسترس</string>
+    <string name="ok">باشه</string>
+
+    <string name="report_title">Narsaq — تست دسترسی TCP — %1$s</string>
+    <string name="report_servers">تعداد سرورهای تست‌شده: %1$d</string>
+    <string name="report_header_failed">ناموفق‌ها:</string>
+    <string name="report_line_no_speed">%1$d. %2$s — %3$d ms — %4$s ✓</string>
+
+    <!-- Export formats -->
+    <string name="export_format_txt">TXT</string>
+    <string name="export_format_base64">اشتراک</string>
+    <string name="export_format_singbox">Sing-box</string>
+    <string name="export_format_clash">Clash</string>
+    <string name="export_format_label">فرمت</string>
+
+    <!-- Scanner strings (NEW) -->
+    <string name="scan_title">🔍 اسکنر Narsaq</string>
+    <string name="scan_subtitle">اسکن آی‌پی‌های تمیز کلودفلر</string>
+    <string name="scan_guide_title">📚 راهنمای راه‌اندازی</string>
+    <string name="scan_guide_subtitle">در ۳ مرحله ساده کانفیگ خود را بسازید</string>
+    <string name="scan_setup_title">راه‌اندازی سریع</string>
+    <string name="scan_setup_subtitle">همه‌چیز برای شروع کار</string>
+    <string name="scan_step_1_title">ساخت Worker</string>
+    <string name="scan_step_1_sub">مرحله ۱</string>
+    <string name="scan_step_2_title">ربات نصب</string>
+    <string name="scan_step_2_sub">مرحله ۲</string>
+    <string name="scan_step_3_title">پروژه‌های پنل</string>
+    <string name="scan_step_3_sub">مرحله ۳</string>
+    <string name="scan_settings_subtitle">جست‌وجوی اندپوینت را تنظیم کن</string>
+    <string name="scan_field_ports">پورت‌ها</string>
+    <string name="scan_field_count">تعداد IP</string>
+    <string name="scan_field_timeout">تایم‌اوت</string>
+    <string name="scan_ready_title">%1$d اندپوینت آماده است</string>
+    <string name="scan_ready_subtitle">مرتب‌شده بر اساس کیفیت اتصال</string>
+    <string name="scan_view_results">نمایش نتایج</string>
+    <string name="scan_again">اسکن</string>
+    <string name="full_guide">راهنما</string>
+    <string name="scan_settings_title">تنظیمات اسکن</string>
+    <string name="scan_tls_label">تست TLS Handshake</string>
+    <string name="scan_verify_label">تأیید چندمرحله‌ای</string>
+    <string name="scan_neighbor_label">بررسی آی‌پی‌های همسایه</string>
+    <string name="scan_ipv6_label">اسکن رنج‌های IPv6</string>
+    <string name="scan_speed_label">تست سرعت (Mbps)</string>
+    <string name="scan_field_ranges">رنج‌های دلخواه (اختیاری)</string>
+    <string name="scan_custom_ranges_hint">در بالای رنج‌های کلودفلر اضافه می‌شود — هر خط یکی\n103.21.244.0/24\n2606:4700::/32\n1.2.3.4:443</string>
+    <string name="scan_btn_start">🔍 شروع اسکن</string>
+    <string name="scan_btn_cancel">لغو</string>
+    <string name="scan_btn_copy">کپی</string>
+    <string name="scan_btn_build">ساخت کانفیگ →</string>
+    <string name="scan_status_idle">آی‌پی‌های تمیز کلودفلر را اسکن کنید</string>
+    <string name="scan_status_scanning">در حال اسکن… %1$d/%2$d | پیدا شد: %3$d</string>
+    <string name="scan_status_done">تمام! %1$d آی‌پی تمیز پیدا شد</string>
+    <string name="scan_status_cancelled">اسکن لغو شد</string>
+    <string name="scan_status_asn">در حال ASN Lookup…</string>
+    <string name="scan_results_found">✅ %1$d آی‌پی تمیز پیدا شد</string>
+    <string name="scan_no_results">⚠️ هیچ آی‌پی تمیزی پیدا نشد</string>
+    <string name="scan_no_results_hint">تایم‌اوت یا تعداد آی‌پی را افزایش دهید</string>
+    <string name="scan_no_ips_copy">آی‌پی‌ای برای کپی نیست</string>
+    <string name="scan_ips_copied">آی‌پی‌ها کپی شد!</string>
+    <string name="scan_report_copied">گزارش کامل اسکن کپی شد</string>
+    <string name="scan_cannot_open">لینک باز نشد</string>
+
+    <string name="scan_guide_worker_title">☁️ ساخت Worker کلودفلر</string>
+    <string name="scan_guide_worker_body">مرحله ۱: ساخت توکن API\n• وارد داشبورد کلودفلر شوید\n• پروفایل ← API Tokens ← ساخت توکن\n• دسترسی‌های لازم:\n  - Workers Scripts / Edit\n  - Workers KV Storage / Edit\n  - D1 / Edit\n  - Workers Routes / Edit\n  - Account Settings / Read\n\nمرحله ۲: تأیید ایمیل\n• ایمیل کلودفلر باید تأیید شده باشد\n• حداقل یک‌بار وارد Workers &amp; Pages شوید\n\nمرحله ۳: نصب پنل\n• از پروژه‌های پنل استفاده کنید\n• یا از ربات تلگرام برای نصب خودکار\n\n⚠️ بعد از ساخت پنل اگر صفحه خالی دیدید ۱-۲ دقیقه صبر کنید</string>
+    <string name="scan_guide_bot_title">🤖 ربات نصب خودکار</string>
+    <string name="scan_guide_bot_body">از ربات تلگرام @CloudBPBot برای نصب خودکار پنل استفاده کنید:\n\n• توکن API کلودفلر را وارد کنید\n• نوع پنل را انتخاب کنید\n• ربات همه چیز را خودکار نصب می‌کند\n• لینک کانفیگ فوراً دریافت می‌شود\n\nساده‌ترین راه شروع!</string>
+    <string name="scan_guide_panels_title">📋 پروژه‌های پنل</string>
+    <string name="scan_open_cloudflare">باز کردن کلودفلر</string>
+    <string name="scan_open_bot">باز کردن ربات</string>
+
+    <!-- Bottom nav -->
+    <string name="nav_test">تست</string>
+    <string name="nav_scanner">اسکنر</string>
+    <string name="nav_results">نتایج</string>
+
+    <!-- Hero -->
+    <string name="hero_title_default">Narsaq</string>
+    <string name="scan_hero_title">اسکنر شبکه</string>
+    <string name="scan_hero_subtitle">اندپوینت‌های سریع و سالم کلودفلر را پیدا کن</string>
+    <string name="input_hero_title">تست اندپوینت</string>
+    <string name="input_hero_subtitle">کانفیگ‌ها را وارد و اندپوینت‌های پاسخ‌گو را رتبه‌بندی کن</string>
+    <string name="scan_complete_pill">اسکن کامل شد · %1$d آی‌پی سالم</string>
+    <string name="stat_scanned">بررسی‌شده</string>
+    <string name="stat_clean">سالم</string>
+    <string name="stat_best">بهترین</string>
+    <string name="cd_status_scanning">در حال اسکن…</string>
+
+    <!-- Results summary -->
+    <string name="summary_passed">سالم</string>
+    <string name="summary_avg_latency">میانگین تأخیر</string>
+    <string name="summary_packet_loss">افت بسته</string>
+    <string name="quality_insight_title">تحلیل کیفیت: </string>
+    <string name="quality_insight_body">اندپوینت پایدار است. برای مسیر سریع‌تر، آی‌پی‌های همسایه را بررسی کن.</string>
+    <string name="reach_port">روی پورت %1$d در دسترس است</string>
+    <string name="loss_format">افت %1$s</string>
+</resources>

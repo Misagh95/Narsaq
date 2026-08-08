@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/nav_input"
+        android:icon="@drawable/ic_test"
+        android:title="@string/nav_test" />
+    <item
+        android:id="@+id/nav_scanner"
+        android:icon="@drawable/ic_radar"
+        android:title="@string/nav_scanner" />
+    <item
+        android:id="@+id/nav_results"
+        android:icon="@drawable/ic_bolt"
+        android:title="@string/nav_results" />
+</menu>

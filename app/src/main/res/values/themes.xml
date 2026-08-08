@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Theme.Narsaq" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/md_primary</item>
+        <item name="colorOnPrimary">@color/md_on_primary</item>
+        <item name="colorPrimaryContainer">@color/md_primary_container</item>
+        <item name="colorOnPrimaryContainer">@color/md_on_primary_container</item>
+        <item name="colorSecondary">@color/md_secondary</item>
+        <item name="colorOnSecondary">@color/md_on_secondary</item>
+        <item name="colorSecondaryContainer">@color/md_secondary_container</item>
+        <item name="colorOnSecondaryContainer">@color/md_on_secondary_container</item>
+        <item name="colorSurface">@color/md_surface</item>
+        <item name="colorSurfaceVariant">@color/md_surface_variant</item>
+        <item name="colorOnSurfaceVariant">@color/md_on_surface_variant</item>
+        <item name="colorOnSurface">@color/md_on_surface</item>
+        <item name="colorOutline">@color/md_outline</item>
+        <item name="colorOutlineVariant">@color/md_outline_variant</item>
+        <item name="android:colorBackground">@color/md_background</item>
+        <item name="android:statusBarColor">@color/status_bar</item>
+        <item name="android:windowLightStatusBar">false</item>
+        <item name="android:navigationBarColor">@color/md_background</item>
+    </style>
+
+    <style name="Widget.Narsaq.ActionButton" parent="Widget.Material3.Button.OutlinedButton.Icon">
+        <item name="android:textSize">12sp</item>
+        <item name="android:minHeight">40dp</item>
+        <item name="android:textColor">@color/md_primary</item>
+        <item name="iconTint">@color/md_primary</item>
+        <item name="strokeColor">@color/md_outline_variant</item>
+        <item name="cornerRadius">14dp</item>
+    </style>
+
+    <style name="Widget.Narsaq.TextInputLayout" parent="Widget.Material3.TextInputLayout.FilledBox">
+        <item name="boxCornerRadiusTopStart">14dp</item>
+        <item name="boxCornerRadiusTopEnd">14dp</item>
+        <item name="boxCornerRadiusBottomStart">14dp</item>
+        <item name="boxCornerRadiusBottomEnd">14dp</item>
+        <item name="boxBackgroundColor">@color/md_surface_variant</item>
+        <item name="hintTextColor">@color/md_on_surface_variant</item>
+    </style>
+
+    <!-- Primary filled button: uses the theme's colorPrimary background and
+         colorOnPrimary text, so it is clearly visible in both light and dark
+         themes (and shows the proper disabled state). -->
+    <style name="Widget.Narsaq.PrimaryButton" parent="Widget.Material3.Button">
+        <item name="android:textSize">13sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:minHeight">53dp</item>
+        <item name="cornerRadius">17dp</item>
+    </style>
+
+    <!-- Bottom nav active indicator -->
+    <style name="Widget.Narsaq.NavIndicator" parent="Widget.Material3.BottomNavigationView.ActiveIndicator">
+        <item name="android:color">@color/md_primary_container</item>
+        <item name="android:width">44dp</item>
+        <item name="android:height">28dp</item>
+        <item name="shapeAppearance">@style/ShapeAppearance.Narsaq.Pill</item>
+    </style>
+
+    <style name="ShapeAppearance.Narsaq.Pill" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">14dp</item>
+    </style>
+</resources>

@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Narsaq</string>
+
+    <!-- Hero / common -->
+    <string name="hero_subtitle">Paste your configs, test TCP reachability, and rank responsive endpoints</string>
+    <string name="cd_language">Change language</string>
+    <string name="cd_theme">Toggle dark/light mode</string>
+    <string name="cd_back">Back</string>
+    <string name="cd_status_ok">Config is reachable</string>
+    <string name="cd_status_fail">Config is unreachable</string>
+
+    <!-- Input -->
+    <string name="input_label">Configs</string>
+    <string name="input_label_sub">One endpoint per line</string>
+    <string name="input_ips_label">Candidate IPs</string>
+    <string name="input_ips_sub">Optional endpoint overrides</string>
+    <string name="input_ips_hint">One IP per line</string>
+    <string name="input_hint">One per line…\nvless://…  vmess://…  ss://…  trojan://…\nhost:port or host:443,8443,80</string>
+    <string name="btn_paste">Paste</string>
+    <string name="btn_file">Choose file</string>
+    <string name="btn_example">Example</string>
+    <string name="btn_clear">Clear</string>
+    <string name="btn_start">Start Test</string>
+    <string name="lines_count">%1$d lines</string>
+    <string name="clipboard_empty">Clipboard is empty</string>
+    <string name="file_read_error">Could not read file</string>
+    <string name="example_loaded">Sample configs loaded</string>
+    <string name="offline_error">No internet connection</string>
+    <string name="no_valid_configs">No valid configs found</string>
+
+    <!-- Results -->
+    <string name="results_title">Results</string>
+    <string name="btn_new_test">New Test</string>
+    <string name="progress_text">%1$d of %2$d tested</string>
+    <string name="status_testing">Testing…</string>
+    <string name="status_done">Done</string>
+    <string name="status_cancelled">Cancelled</string>
+    <string name="all_failed">No config was reachable. Try other IPs or check your connection.</string>
+    <string name="filter_all">All</string>
+    <string name="filter_passed">Passed</string>
+    <string name="filter_failed">Failed</string>
+    <string name="btn_cancel">Cancel Test</string>
+    <string name="btn_retest_failed">Retest Failed</string>
+    <string name="btn_retest_all">Retest All</string>
+    <string name="btn_anti_filter">Anti-Filter</string>
+    <string name="btn_anti_filter_active">✓ Anti-Filter</string>
+    <string name="anti_filter_applied">Anti-filter (fragment + cipher suites) applied to all passed configs.</string>
+    <string name="anti_filter_removed">Anti-filter removed.</string>
+    <string name="anti_filter_remove_dialog_body">Remove fragment + cipherSuites from all configs? They will go back to the plain (universal) form.</string>
+    <string name="anti_filter_dialog_title">Apply anti-filter?</string>
+    <string name="anti_filter_dialog_body">This adds fragment + cipherSuites to your VLESS/Trojan/VMess configs. These settings only work in the PattNG client — other clients will ignore or reject them.\n\nYour Narsaq results keep working in all clients until you apply this.</string>
+    <string name="anti_filter_install_pattng">Download PattNG</string>
+    <string name="anti_filter_apply">Apply to all configs</string>
+    <string name="btn_export">Export File</string>
+    <string name="btn_copy">Copy</string>
+    <string name="btn_share">Share</string>
+    <string name="copied">Report copied to clipboard</string>
+    <string name="nothing_to_copy">Nothing to copy</string>
+    <string name="export_ok">Saved: %1$s</string>
+    <string name="export_failed">Export failed</string>
+    <string name="share_title">Share report</string>
+    <string name="storage_permission_denied">Storage permission denied</string>
+    <string name="retest_empty">Nothing to retest</string>
+
+    <!-- Types -->
+    <string name="type_vless">VLESS</string>
+    <string name="type_vmess">VMess</string>
+    <string name="type_ss">SS</string>
+    <string name="type_trojan">Trojan</string>
+    <string name="type_plain">Plain</string>
+    <string name="type_invalid">Invalid</string>
+
+    <!-- Item states -->
+    <string name="status_waiting">Waiting…</string>
+    <string name="status_testing_item">Testing…</string>
+    <string name="unreachable">Unreachable</string>
+    <string name="invalid_config">This line cannot be processed</string>
+    <string name="latency_ms">%1$d ms</string>
+    <string name="tcp_reachable">TCP reachable</string>
+    <string name="speed_na">—</string>
+    <string name="rank_format">#%1$d</string>
+    <string name="ports_label">Port %1$s</string>
+    <string name="quality_excellent">Excellent</string>
+    <string name="quality_good">Good</string>
+    <string name="quality_fair">Fair</string>
+    <string name="quality_slow">Slow</string>
+
+    <!-- Empty states -->
+    <string name="empty_results_title">Nothing to show yet</string>
+    <string name="empty_results_body">Start a test to see ranked results</string>
+
+    <!-- Detail dialog -->
+    <string name="detail_title">Details</string>
+    <string name="detail_sni">SNI / Host: %1$s</string>
+    <string name="detail_path">Path: %1$s</string>
+    <string name="detail_speed_na">Result: TCP endpoint is reachable; proxy handshake is not verified</string>
+    <string name="detail_ports_header">Ports</string>
+    <string name="port_ok">✓ %1$d — %2$d ms</string>
+    <string name="port_fail">✗ %1$d — unreachable</string>
+    <string name="ok">OK</string>
+
+    <!-- Report -->
+    <string name="report_title">Narsaq — TCP Reachability Test — %1$s</string>
+    <string name="report_servers">Servers tested: %1$d</string>
+    <string name="report_header_failed">Failed:</string>
+    <string name="report_line_no_speed">%1$d. %2$s — %3$d ms — %4$s ✓</string>
+
+    <!-- Export formats -->
+    <string name="export_format_txt">TXT</string>
+    <string name="export_format_base64">Sub</string>
+    <string name="export_format_singbox">Sing-box</string>
+    <string name="export_format_clash">Clash</string>
+    <string name="export_format_label">Format</string>
+
+    <!-- Bottom nav -->
+    <string name="nav_test">Test</string>
+    <string name="nav_scanner">Scanner</string>
+    <string name="nav_results">Results</string>
+
+    <!-- Hero -->
+    <string name="hero_title_default">Narsaq</string>
+    <string name="scan_hero_title">Network scanner</string>
+    <string name="scan_hero_subtitle">Discover fast, clean Cloudflare endpoints</string>
+    <string name="input_hero_title">Endpoint tester</string>
+    <string name="input_hero_subtitle">Paste configs and rank responsive endpoints</string>
+    <string name="scan_complete_pill">Scan complete · %1$d clean IPs</string>
+    <string name="stat_scanned">Scanned</string>
+    <string name="stat_clean">Clean</string>
+    <string name="stat_best">Best</string>
+    <string name="cd_status_scanning">Scanning…</string>
+
+    <!-- Scanner -->
+    <string name="scan_title">Narsaq Scanner</string>
+    <string name="scan_subtitle">Scan Cloudflare IPs to find clean ones</string>
+    <string name="scan_guide_title">📚 Setup Guide</string>
+    <string name="scan_guide_subtitle">Get your proxy config in 3 easy steps</string>
+    <string name="scan_setup_title">Quick setup</string>
+    <string name="scan_setup_subtitle">Everything needed to get started</string>
+    <string name="scan_step_1_title">Create Worker</string>
+    <string name="scan_step_1_sub">Step 1</string>
+    <string name="scan_step_2_title">Setup bot</string>
+    <string name="scan_step_2_sub">Step 2</string>
+    <string name="scan_step_3_title">Panel projects</string>
+    <string name="scan_step_3_sub">Step 3</string>
+    <string name="scan_settings_subtitle">Fine-tune endpoint discovery</string>
+    <string name="scan_field_ports">PORTS</string>
+    <string name="scan_field_count">IP COUNT</string>
+    <string name="scan_field_timeout">TIMEOUT</string>
+    <string name="scan_ready_title">%1$d endpoints are ready</string>
+    <string name="scan_ready_subtitle">Sorted by connection quality</string>
+    <string name="scan_ip_count_all">IPs: All ▾</string>
+    <string name="scan_ip_count_pick">IPs: %1$d ▾</string>
+    <string name="scan_ip_count_dialog_title">Number of IPs to take</string>
+    <string name="scan_view_results">View results</string>
+    <string name="scan_again">Scan</string>
+    <string name="full_guide">Full guide</string>
+    <string name="scan_settings_title">Scan settings</string>
+    <string name="scan_tls_label">TLS handshake test</string>
+    <string name="scan_verify_label">Multi-sample verification</string>
+    <string name="scan_neighbor_label">Explore neighboring IPs</string>
+    <string name="scan_ipv6_label">Scan IPv6 ranges</string>
+    <string name="scan_speed_label">Speed test (Mbps)</string>
+    <string name="scan_field_ranges">CUSTOM RANGES (OPTIONAL)</string>
+    <string name="scan_custom_ranges_hint">Added on top of Cloudflare ranges — one per line\n103.21.244.0/24\n2606:4700::/32\n1.2.3.4:443</string>
+    <string name="scan_btn_start">🔍 Start Scan</string>
+    <string name="scan_btn_cancel">Cancel</string>
+    <string name="scan_btn_copy">Copy</string>
+    <string name="scan_btn_build">Build Configs →</string>
+    <string name="scan_status_idle">Scan Cloudflare IPs to find clean ones</string>
+    <string name="scan_status_scanning">Scanning… %1$d/%2$d | Found: %3$d</string>
+    <string name="scan_status_done">Done! %1$d clean IPs found</string>
+    <string name="scan_status_cancelled">Scan cancelled</string>
+    <string name="scan_status_asn">ASN Lookup…</string>
+    <string name="scan_results_found">✅ %1$d Clean IPs Found</string>
+    <string name="scan_no_results">⚠️ No clean IPs found</string>
+    <string name="scan_no_results_hint">Try increasing timeout or IP count</string>
+    <string name="scan_no_ips_copy">No IPs to copy</string>
+    <string name="scan_ips_copied">IPs copied!</string>
+    <string name="scan_report_copied">Detailed scan report copied</string>
+    <string name="scan_cannot_open">Cannot open link</string>
+
+    <!-- Scanner guides -->
+    <string name="scan_guide_worker_title">☁️ Create Cloudflare Worker</string>
+    <string name="scan_guide_worker_body">Step 1: Create API Token\n• Go to Cloudflare Dashboard\n• Profile → API Tokens → Create Token\n• Permissions needed:\n  - Workers Scripts / Edit\n  - Workers KV Storage / Edit\n  - D1 / Edit\n  - Workers Routes / Edit\n  - Account Settings / Read\n\nStep 2: Verify Email\n• Your Cloudflare email must be verified\n• Visit Workers and Pages at least once\n\nStep 3: Deploy Panel\n• Use one of the panel projects\n• Or use the Telegram bot for auto setup\n\n⚠️ After creating the panel, wait 1–2 minutes if the page is empty.</string>
+
+    <string name="scan_guide_bot_title">🤖 Auto Setup Bot</string>
+    <string name="scan_guide_bot_body">Use Telegram bot @CloudBPBot to auto-deploy your panel:\n\n• Enter your Cloudflare API Token\n• Choose panel type\n• Bot deploys everything automatically\n• Get your config link instantly\n\nThis is the easiest way to get started.</string>
+
+    <string name="scan_guide_panels_title">📋 Panel Projects</string>
+    <string name="scan_open_cloudflare">Open Cloudflare</string>
+    <string name="scan_open_bot">Open Bot</string>
+
+    <!-- Results summary -->
+    <string name="summary_passed">PASSED</string>
+    <string name="summary_avg_latency">AVG LATENCY</string>
+    <string name="summary_packet_loss">PACKET LOSS</string>
+    <string name="quality_insight_title">Quality insight: </string>
+    <string name="quality_insight_body">Endpoint is stable. For a faster route, try neighboring IPs.</string>
+    <string name="reach_port">Reachable on port %1$d</string>
+    <string name="loss_format">%1$s loss</string>
+</resources>
