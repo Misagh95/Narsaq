@@ -1,0 +1,12 @@
+Narsaq Desktop — Cloudflare clean IP finder, config builder & config optimizer
+
+This installer installs the standalone desktop app (no Python needed).
+
+Notes:
+
+  • The app runs a local web server and opens your browser at
+    http://127.0.0.1:8787 — everything stays on your machine.
+  • Scan output files (clean_ips_*.txt, best_configs_*.txt) are saved
+    in the install folder (next to the exe).
+  • xray-core is included for the real proxy test (PattNG trick).
+  • Uninstall from "Apps & features" or the Start menu shortcut.
