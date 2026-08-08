@@ -9,8 +9,8 @@ import (
 	"strings"
 	"time"
 
-	"github.com/Misagh95/Narsaq-Go/scanner"
-	"github.com/Misagh95/Narsaq-Go/server"
+	"github.com/Misagh95/Narsaq/go/scanner"
+	"github.com/Misagh95/Narsaq/go/server"
 )
 
 const Version = "1.0.0-go"

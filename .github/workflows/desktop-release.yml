@@ -1,0 +1,46 @@
+name: Build Desktop Release
+
+on:
+  workflow_dispatch:
+  push:
+    tags:
+      - "desktop-v*"
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: windows-latest
+    defaults:
+      run:
+        working-directory: desktop
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install build tools
+        run: pip install pyinstaller==6.20.0 pillow pywebview==6.2.1
+      - name: Install Inno Setup
+        run: choco install innosetup -y --no-progress
+      - name: Build release
+        run: python build_release.py
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: narsaq-desktop-release
+          path: |
+            desktop/releases/*.exe
+            desktop/releases/*.zip
+            desktop/releases/SHA256SUMS.txt
+          if-no-files-found: error
+      - name: Create GitHub release
+        if: startsWith(github.ref, 'refs/tags/desktop-v')
+        uses: softprops/action-gh-release@v2
+        with:
+          files: |
+            desktop/releases/*.exe
+            desktop/releases/*.zip
+            desktop/releases/SHA256SUMS.txt
+          generate_release_notes: true

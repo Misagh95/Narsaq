@@ -9,8 +9,8 @@ import (
 	"sync"
 	"time"
 
-	"github.com/Misagh95/Narsaq-Go/config"
-	"github.com/Misagh95/Narsaq-Go/scanner"
+	"github.com/Misagh95/Narsaq/go/config"
+	"github.com/Misagh95/Narsaq/go/scanner"
 )
 
 type ServerState struct {

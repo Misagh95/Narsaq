@@ -5,7 +5,7 @@
 Cloudflare clean-IP finder, config builder & config optimizer — a fully local,
 standalone Windows desktop tool. Self-contained with zero required external dependencies.
 
-> 📱 **Looking for the Android app?** Check out the official Android version: **[Narsaq for Android](https://github.com/Misagh95/Narsaq)**
+> 📱 **Looking for the Android app?** See **[Narsaq for Android](../android/)** in this repository.
 
 > 🔒 **All processing happens locally on your machine. Nothing is uploaded anywhere.**
 
@@ -108,7 +108,7 @@ git tag v1.0.0 && git push origin v1.0.0
 </p>
 
 > 📱 **نسخه موبایل (اندروید):** این مخزن مربوط به نسخه دسکتاپ و ویندوز است. برای دریافت و استفاده از اپلیکیشن اندروید به مخزن رسمی اندروید مراجعه کنید:  
-> 🔗 **[Narsaq for Android (نسخه اندروید)](https://github.com/Misagh95/Narsaq)**
+> 🔗 **[Narsaq for Android (نسخه اندروید)](../android/)**
 
 ### ویژگی‌های کلیدی Narsaq Desktop:
 1. **اسکنر آی‌پی تمیز کلودفلر:** پیدا کردن آی‌پی‌های تمیز با ۴ مرحله وریفای (TCP ➔ TLS ➔ HTTP ➔ تست سرعت Mbps) و پشتیبانی از اسکن همسایه‌ها.

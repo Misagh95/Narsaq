@@ -9,7 +9,7 @@
 #define MyAppName "Narsaq Desktop"
 #define MyAppExe "NarsaqDesktop-v" + MyAppVer + ".exe"
 #define MyAppPublisher "Narsaq"
-#define MyAppURL "https://github.com/Misagh95/NarsaqDesktop"
+#define MyAppURL "https://github.com/Misagh95/Narsaq"
 
 [Setup]
 ; per-user install → بدون نیاز به ادمین، و پوشه {app} قابل نوشتن است

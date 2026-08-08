@@ -1,7 +1,8 @@
-# Gradle
+# Android / Gradle
 .gradle/
-/build/
-/app/build/
+.kotlin/
+android/build/
+android/app/build/
 
 # Local configuration files
 local.properties
@@ -9,11 +10,30 @@ keystore.properties
 *.keystore
 *.jks
 
+# Python / Desktop
+__pycache__/
+*.py[cod]
+desktop/build/
+desktop/dist/
+desktop/*.spec
+desktop/bin/xray.exe
+desktop/clean_ips_*.txt
+desktop/best_configs_*.txt
+desktop/releases/*.exe
+desktop/releases/*.zip
+desktop/releases/SHA256SUMS.txt
+desktop/tools/is.exe
+desktop/tools/isrc/
+desktop/tools/innoextract*
+
+# Go
+go/narsaq-go-*
+go/SHA256SUMS.txt
+
 # IDE
 .idea/
 *.iml
 .vscode/
-.kotlin/
 
 # OS
 .DS_Store
@@ -23,7 +43,7 @@ Thumbs.db
 *.log
 *.apk
 
-# Local tooling and non-Android projects
+# Local tooling and legacy working copies
 .freebuff/
 NarsaqDesktop/
 cli/

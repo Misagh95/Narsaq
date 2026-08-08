@@ -3,7 +3,7 @@
 <h1 align="center">Narsaq — نرساق</h1>
 
 <div align="center">
-  <img src="docs/logo.png" width="96" height="96" alt="نرساق" />
+  <img src="../docs/logo.png" width="96" height="96" alt="نرساق" />
   <br/><br/>
   <b>اسکن‌کننده اندرویس و سازنده کانفیگ</b> — کانفیگ‌های پروکسی خود را اضافه کنید، رنج‌های کلودفلر را اسکن کنید و بهترین اندرویس را بر اساس تأخیر و سرعت واقعی برگزینید.
   <br/><br/>

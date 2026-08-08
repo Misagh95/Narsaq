@@ -1,0 +1,50 @@
+name: Build Go Binaries
+
+on:
+  workflow_dispatch:
+  push:
+    tags:
+      - "go-v*"
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: go
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with:
+          go-version-file: go/go.mod
+          cache-dependency-path: go/go.mod
+      - name: Build Windows AMD64
+        run: GOOS=windows GOARCH=amd64 go build -ldflags="-s -w" -o narsaq-go-windows-amd64.exe .
+      - name: Build Linux AMD64
+        run: GOOS=linux GOARCH=amd64 go build -ldflags="-s -w" -o narsaq-go-linux-amd64 .
+      - name: Build Linux ARM64
+        run: GOOS=linux GOARCH=arm64 go build -ldflags="-s -w" -o narsaq-go-linux-arm64 .
+      - name: Build macOS ARM64
+        run: GOOS=darwin GOARCH=arm64 go build -ldflags="-s -w" -o narsaq-go-darwin-arm64 .
+      - name: Build macOS AMD64
+        run: GOOS=darwin GOARCH=amd64 go build -ldflags="-s -w" -o narsaq-go-darwin-amd64 .
+      - name: Generate checksums
+        run: sha256sum narsaq-go-* > SHA256SUMS.txt
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: narsaq-go-binaries
+          path: |
+            go/narsaq-go-*
+            go/SHA256SUMS.txt
+      - name: Create GitHub release
+        if: startsWith(github.ref, 'refs/tags/go-v')
+        uses: softprops/action-gh-release@v2
+        with:
+          files: |
+            go/narsaq-go-*
+            go/SHA256SUMS.txt
+          generate_release_notes: true
