@@ -4,7 +4,10 @@ import (
 	"flag"
 	"fmt"
 	"os"
+	"os/exec"
+	"runtime"
 	"strings"
+	"time"
 
 	"github.com/Misagh95/Narsaq-Go/scanner"
 	"github.com/Misagh95/Narsaq-Go/server"
@@ -14,6 +17,7 @@ const Version = "1.0.0-go"
 
 func main() {
 	port := flag.Int("port", 8787, "Port for web UI and subscription server")
+	noBrowser := flag.Bool("no-browser", false, "Do not auto-open desktop app window")
 	scanMode := flag.Bool("scan", false, "Run in fast CLI scanner mode")
 	count := flag.Int("count", 200, "Number of Cloudflare IPs to scan")
 	snisFlag := flag.String("snis", "", "Comma-separated custom SNIs for DPI bypass")
@@ -60,8 +64,35 @@ func main() {
 		return
 	}
 
+	go openAppWindow(fmt.Sprintf("http://127.0.0.1:%d", *port), *noBrowser)
+
 	if err := server.StartServer(*port); err != nil {
 		fmt.Fprintf(os.Stderr, "Error starting Narsaq-Go server: %v\n", err)
 		os.Exit(1)
+	}
+}
+
+func openAppWindow(url string, noBrowser bool) {
+	if noBrowser {
+		return
+	}
+	time.Sleep(300 * time.Millisecond)
+
+	switch runtime.GOOS {
+	case "windows":
+		// ۱. تلاش برای اجرای پنجره مستقل دسکتاپ با Edge (بدون تب و نوار آدرس - حالت Native App)
+		if err := exec.Command("cmd", "/c", "start", "msedge", "--app="+url).Start(); err == nil {
+			return
+		}
+		// ۲. تلاش با Chrome در حالت App
+		if err := exec.Command("cmd", "/c", "start", "chrome", "--app="+url).Start(); err == nil {
+			return
+		}
+		// ۳. فال‌بک به باز کردن در مرورگر پیش‌فرض
+		exec.Command("cmd", "/c", "start", url).Start()
+	case "darwin":
+		exec.Command("open", url).Start()
+	case "linux":
+		exec.Command("xdg-open", url).Start()
 	}
 }
